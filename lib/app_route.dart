@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:finance_app/screens/onboard/onboard_screen_one.dart';
+import 'package:finance_app/screens/onboard/onboard_screen_two.dart';
 import 'package:finance_app/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
@@ -31,5 +32,10 @@ final router = GoRouter(
       path: '/onboardScreenOne',
       builder: (context, state) => const OnboardScreenOne(),
     ),
+    GoRoute(
+      name: OnboardScreenTwo.id,
+      path:'/onboardScreenTwo',
+      builder: (context, state) => const OnboardScreenTwo(),
+       )
   ],
 );

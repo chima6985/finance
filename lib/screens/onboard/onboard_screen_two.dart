@@ -2,12 +2,10 @@ import 'package:finance_app/components/decorated_container.dart';
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class OnboardScreenOne extends StatelessWidget {
-  const OnboardScreenOne({super.key});
-
-  static const String id = 'onboardScreenOne';
+class OnboardScreenTwo extends StatelessWidget {
+  const OnboardScreenTwo({super.key});
+  static const String id = 'onboardScreenTwo';
 
   @override
   Widget build(BuildContext context) {
@@ -39,26 +37,26 @@ class OnboardScreenOne extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 139.h),
+               SizedBox(height: 139.h),
               Image.asset('assets/images/jpegs/buildings.png'),
-              SizedBox(height: 73.h),
-              Text(
-                'We level the field by giving you access \n to tokenized commodity',
+               SizedBox(height: 73.h),
+               Text(
+                'You’re taking a hunch to trust us, so we \n promise to protect your account',
                 textAlign: TextAlign.center,
                 style: context.textTheme.headlineSmall!.copyWith(
                   fontFamily: 'CircularStd',
                 ),
               ),
-              SizedBox(height: 24.h),
-              Text(
-                'What this means is that you can buy stocks \n in your favorite companies easily',
+               SizedBox(height: 24.h),
+               Text(
+                'Your capital is as secured as a bank vault, /n even better, you only have access to it',
                 textAlign: TextAlign.center,
                 style: context.textTheme.titleMedium!.copyWith(
                   fontFamily: 'CircularStd',
                 ),
               ),
-              SizedBox(height: 120.h),
-              Row(
+               SizedBox(height: 120.h),
+               Row(
                 children: [
                   Align(
                     alignment: Alignment.centerRight,
@@ -66,9 +64,7 @@ class OnboardScreenOne extends StatelessWidget {
                       height: 50.h,
                       width: 120.w,
                       child: ElevatedButton(
-                        onPressed: () {
-                        
-                        },
+                        onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0XFF27AE60),
                         ),
