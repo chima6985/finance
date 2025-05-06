@@ -1,9 +1,11 @@
 import 'dart:developer';
 import 'package:finance_app/screens/onboard/onboard_screen_one.dart';
+import 'package:finance_app/screens/onboard/onboard_screen_three.dart';
 import 'package:finance_app/screens/onboard/onboard_screen_two.dart';
 import 'package:finance_app/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
+
 
 class NavObserver extends NavigatorObserver {
   @override
@@ -36,6 +38,11 @@ final router = GoRouter(
       name: OnboardScreenTwo.id,
       path:'/onboardScreenTwo',
       builder: (context, state) => const OnboardScreenTwo(),
-       )
+       ),
+    GoRoute(
+      name: OnboardScreenThree.id,
+      path: '/onboardScreenThree',
+      builder: (context, state) => const OnboardScreenThree(),
+      )
   ],
 );
