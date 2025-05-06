@@ -25,7 +25,13 @@ class _DecoratedContainerState extends State<DecoratedContainer> {
       body: Container(
         width: mqr.width,
         height: mqr.height,
-        child: Image.asset('assets/imges/jpegs/dec_container.png'),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/jpegs/dec_container.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: widget.child,
       ),
     );
   }
