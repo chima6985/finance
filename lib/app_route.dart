@@ -16,24 +16,20 @@ class NavObserver extends NavigatorObserver {
   }
 }
 
-
 final router = GoRouter(
   initialLocation: '/',
-  observers: [
-    NavObserver(),
+  observers: [NavObserver()],
+
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const SplashScreen(),
+      name: SplashScreen.id,
+    ),
+    GoRoute(
+      name: OnboardScreenOne.id,
+      path: '/onboardScreenOne',
+      builder: (context, state) => const OnboardScreenOne(),
+    ),
   ],
-  
-  routes: 
-    [
-      GoRoute(
-        path: '/',
-        builder: (context, state) => const SplashScreen(),
-        name: SplashScreen.id,
-      ),
-            GoRoute(
-        path: 'onboardScreenOne',
-        builder: (context, state) => const OnboardScreenOne(),
-        name: OnboardScreenOne.id,
-      )
-    ]
-  );
+);

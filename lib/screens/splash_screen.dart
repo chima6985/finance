@@ -1,4 +1,6 @@
+import 'package:finance_app/screens/onboard/onboard_screen_one.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -24,7 +26,9 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
 
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            context.pushNamed(OnboardScreenOne.id);
+          },
           child: Image.asset('assets/images/jpegs/logo.png'),
         ),
       ),

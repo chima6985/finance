@@ -1,7 +1,7 @@
 import 'package:finance_app/components/decorated_container.dart';
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+// import 'package:go_router/go_router.dart';
 
 class OnboardScreenOne extends StatelessWidget {
   const OnboardScreenOne({super.key});
@@ -15,7 +15,7 @@ class OnboardScreenOne extends StatelessWidget {
       Column(
         children: [
           TextButton(onPressed: (){
-            context.pushNamed(OnboardScreenOne.id);
+            
           },
           
            child:
