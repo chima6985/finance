@@ -59,7 +59,7 @@ class OnboardScreenOne extends StatelessWidget {
                   fontFamily: 'CircularStd',
                 ),
               ),
-              SizedBox(height: 120.h),
+              SizedBox(height: 140.h),
               Row(
                 children: [
                   Align(
@@ -69,7 +69,7 @@ class OnboardScreenOne extends StatelessWidget {
                       width: 120.w,
                       child: ElevatedButton(
                         onPressed: () {
-                        context.pushNamed(OnboardScreenTwo.id);
+                          context.pushNamed(OnboardScreenTwo.id);
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0XFF27AE60),

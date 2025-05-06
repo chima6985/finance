@@ -24,7 +24,9 @@ class OnboardScreenTwo extends StatelessWidget {
                   height: 29.h,
                   width: 72.w,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.pop();
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0XFF092E95),
                     ),

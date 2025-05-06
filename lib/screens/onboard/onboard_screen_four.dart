@@ -1,14 +1,13 @@
 import 'package:finance_app/components/decorated_container.dart';
 import 'package:finance_app/extension/context.extension.dart';
-import 'package:finance_app/screens/onboard/onboard_screen_four.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class OnboardScreenThree extends StatelessWidget {
-  const OnboardScreenThree({super.key});
+class OnboardScreenFour extends StatelessWidget {
+  const OnboardScreenFour({super.key});
 
-  static const String id = 'onboardScreenThree';
+  static const String id = 'onboardScreenfour';
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,9 @@ class OnboardScreenThree extends StatelessWidget {
                   height: 29.h,
                   width: 72.w,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.pop();
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0XFF092E95),
                     ),
@@ -41,7 +42,7 @@ class OnboardScreenThree extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 139.h),
-              Image.asset('assets/images/jpegs/cart.png'),
+              Image.asset('assets/images/jpegs/wallet.png'),
               SizedBox(height: 73.h),
               Text(
                 'Liquidate instantly or keep building your \n portfolio is totally up to you',
@@ -52,7 +53,7 @@ class OnboardScreenThree extends StatelessWidget {
               ),
               SizedBox(height: 24.h),
               Text(
-                'A secure and easy medium through which \n you can trade your tokenss',
+                'A secure and easy medium through which \n you can trade your tokens',
                 textAlign: TextAlign.center,
                 style: context.textTheme.titleMedium!.copyWith(
                   fontFamily: 'CircularStd',
@@ -68,7 +69,7 @@ class OnboardScreenThree extends StatelessWidget {
                       width: 120.w,
                       child: ElevatedButton(
                         onPressed: () {
-                          context.pushNamed(OnboardScreenFour.id);
+                          context.pushNamed('');
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0XFF27AE60),
