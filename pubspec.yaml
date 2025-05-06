@@ -1,0 +1,61 @@
+name: finance_app
+description: "A new Flutter project."
+publish_to: 'none' 
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  go_router: ^15.1.1
+  flutter_svg: ^2.0.10+1
+  flutter_screenutil: ^5.9.3
+
+
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  flutter_gen_runner: ^5.8.0
+  build_runner: ^2.4.13
+
+  flutter_test:
+    sdk: flutter
+
+flutter_gen:
+  output: lib/gen/
+  # line_length: 80
+
+  integrations:
+    flutter_svg: true
+
+  outputs:
+    class_name: AppAssets
+
+  
+flutter:
+
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - assets/images/jpegs/
+    - assets/images/svgs/
+
+  fonts:
+  - family: CircularStd
+    fonts:
+      - asset: assets/fonts/CircularStd-Bold.ttf
+        weight: 200    
+      - asset: assets/fonts/CircularStd-Book.ttf
+        weight: 300
+      - asset: assets/fonts/CircularStd-Medium.ttf
+        weight: 400
+      - asset: assets/fonts/CircularStd-Black.ttf
+        weight: 500
