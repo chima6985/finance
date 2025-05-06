@@ -13,23 +13,58 @@ class OnboardScreenOne extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: DecoratedContainer(
-        child: Column(
-          children: [
-            SizedBox(height: context.topPadding),
-            SizedBox(
-              height: 29.h,
-              width: 72.w,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0XFF092E95),
-                ),
-                child: Center(
-                  child: Text('Skip', style: context.textTheme.titleMedium),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+          child: Column(
+            children: [
+              SizedBox(height: context.topPadding + 10),
+              Align(
+                alignment: Alignment.centerRight,
+                child: SizedBox(
+                  height: 29.h,
+                  width: 72.w,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0XFF092E95),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Skip',
+                        style: context.textTheme.titleMedium!.copyWith(
+                          fontFamily: 'CircularStd',
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ],
+              SizedBox(height: 139.h),
+              Image.asset('assets/images/jpegs/buildings.png'),
+              SizedBox(height: 73.h),
+              Text(
+                'We level the field by giving you access \n to tokenized commodity',
+                textAlign: TextAlign.center,
+                style: context.textTheme.headlineSmall!.copyWith(
+                  fontFamily: 'CircularStd',
+                ),
+              ),
+              SizedBox(height: 24.h),
+              Text(
+                'What this means is that you can buy stocks \n in your favorite companies easily',
+                textAlign: TextAlign.center,
+                style: context.textTheme.titleMedium!.copyWith(
+                  fontFamily: 'CircularStd',
+                ),
+              ),
+              SizedBox(height: 120.h),
+              Row(
+                children: [
+                  
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
