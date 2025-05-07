@@ -1,7 +1,7 @@
-import 'package:finance_app/components/decorated_container.dart';
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:finance_app/components/components.dart';
 
 class OnboardScreenOne extends StatelessWidget {
   const OnboardScreenOne({super.key});

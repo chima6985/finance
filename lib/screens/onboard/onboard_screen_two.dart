@@ -1,4 +1,4 @@
-import 'package:finance_app/components/decorated_container.dart';
+import 'package:finance_app/components/components.dart';
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

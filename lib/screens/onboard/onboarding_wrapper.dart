@@ -1,10 +1,6 @@
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:finance_app/screens/onboard/onboard_screen_one.dart';
-// import 'package:finance_app/screens/onboard/onboard_screen_two.dart';
-// import 'package:finance_app/screens/onboard/onboard_screen_three.dart';
-// import 'package:finance_app/screens/onboard/onboard_screen_four.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'onboard.dart';
 
@@ -20,6 +16,7 @@ class OnboardingWrapper extends StatefulWidget {
 class _OnboardingWrapperState extends State<OnboardingWrapper> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
+
 
   void _next() {
     if (_currentPage < 3) {
@@ -51,7 +48,6 @@ class _OnboardingWrapperState extends State<OnboardingWrapper> {
               OnboardScreenFour(),
             ],
           ),
-
           if (_currentPage < 3)
             Positioned(
               top: context.topPadding + 10,

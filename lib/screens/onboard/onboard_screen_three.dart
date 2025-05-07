@@ -1,9 +1,8 @@
-import 'package:finance_app/components/decorated_container.dart';
 import 'package:finance_app/extension/context.extension.dart';
-// import 'package:finance_app/screens/onboard/onboard_screen_four.dart';
+import 'package:finance_app/components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:go_router/go_router.dart';
+
 
 class OnboardScreenThree extends StatelessWidget {
   const OnboardScreenThree({super.key});
