@@ -4,8 +4,6 @@ import 'package:finance_app/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
-
-
 class NavObserver extends NavigatorObserver {
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
@@ -17,7 +15,6 @@ class NavObserver extends NavigatorObserver {
     log('route `popped` from $previousRoute ---> $route');
   }
 }
-
 final router = GoRouter(
   initialLocation: '/',
   observers: [NavObserver()],
@@ -29,24 +26,9 @@ final router = GoRouter(
       name: SplashScreen.id,
     ),
     GoRoute(
-      name: OnboardScreenOne.id,
-      path: '/onboardScreenOne',
-      builder: (context, state) => const OnboardScreenOne(),
+      name: OnboardingWrapper.id,
+      path: '/onboardingWrapper',
+      builder: (context, state) => const OnboardingWrapper(),
     ),
-    GoRoute(
-      name: OnboardScreenTwo.id,
-      path:'/onboardScreenTwo',
-      builder: (context, state) => const OnboardScreenTwo(),
-       ),
-    GoRoute(
-      name: OnboardScreenThree.id,
-      path: '/onboardScreenThree',
-      builder: (context, state) => const OnboardScreenThree(),
-      ),
-    GoRoute(
-      name: OnboardScreenFour.id,
-      path:'/onboardScreenFour',
-      builder: (context, state) => const OnboardScreenFour(),
-    )
   ],
 );
