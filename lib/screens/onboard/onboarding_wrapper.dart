@@ -17,11 +17,10 @@ class _OnboardingWrapperState extends State<OnboardingWrapper> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
-
   void _next() {
     if (_currentPage < 3) {
       _pageController.nextPage(
-        duration: const Duration(milliseconds: 900),
+        duration: const Duration(seconds: 1),
         curve: Curves.easeInOut,
       );
     }

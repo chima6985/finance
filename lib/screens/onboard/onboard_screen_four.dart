@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:finance_app/components/components.dart';
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:flutter/material.dart';
@@ -69,19 +70,20 @@ class OnboardScreenFour extends StatelessWidget {
                             ),
                             builder:
                                 (context) => Container(
-                                  // height: MediaQuery.of(context).size * 0.4,
-                                  margin: EdgeInsets.symmetric(horizontal: 20),
+                                  margin: EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                    vertical: 16,
+                                  ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Divider(
                                         color: Color(0XFFD0D5E0),
-                                        indent: 145.h,
-                                        endIndent: 145.h,
-                                        thickness: 1,
-                                        height: 16,
+                                        indent: 145.w,
+                                        endIndent: 145.w,
+                                        thickness: 2,
                                       ),
-                                      SizedBox(height: 14.h),
+                                      SizedBox(height: 32.h),
                                       Text(
                                         'Let’s Set up Your Account',
                                         style: context.textTheme.headlineSmall!
@@ -98,14 +100,105 @@ class OnboardScreenFour extends StatelessWidget {
                                             ),
                                       ),
                                       SizedBox(height: 40.h),
-                                      // showCountryPicker(
-                                      //   context: context,
-                                      //   showPhoneCode: true,
-                                      //   onSelect: (Country country) {
+                                      ReusableButton(
+                                        color: Color(0XFF14151A),
+                                        height: 48.h,
+                                        width: double.infinity,
+                                        borderRadius: 4.h,
+                                        onTap: () {
+                                          showCountryPicker(
+                                            context: context,
+                                            countryListTheme:
+                                                CountryListThemeData(
+                                                  flagSize: 25,
+                                                  backgroundColor: Color(
+                                                    0XFF1F2023,
+                                                  ),
+                                                  bottomSheetHeight: 500,
+                                                  textStyle: context
+                                                      .textTheme
+                                                      .bodyMedium!
+                                                      .copyWith(
+                                                        fontFamily:
+                                                            'CircularStd',
+                                                      ),
+                                                  inputDecoration:
+                                                      InputDecoration(
+                                                        labelText: 'Search',
+                                                        labelStyle: context
+                                                            .textTheme
+                                                            .headlineSmall!
+                                                            .copyWith(
+                                                              fontFamily:
+                                                                  'Circular Std',
+                                                            ),
+                                                        hintText: 'chima',
+                                                        hintStyle: context
+                                                            .textTheme
+                                                            .bodyMedium!
+                                                            .copyWith(
+                                                              fontFamily:
+                                                                  'Circular Std',
+                                                            ),
+                                                      ),
+                                                ),
 
-                                      //   },
-
-                                      //   )
+                                            showPhoneCode:
+                                                false, // optional. Shows phone code before the country name.
+                                            onSelect: (Country country) {
+                                              log(
+                                                'Select country: ${country.displayName}',
+                                              );
+                                            },
+                                          );
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 20,
+                                            vertical: 12,
+                                          ),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Select Country',
+                                                style: context
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                      fontFamily: 'CircularStd',
+                                                      color: Color(0XFF8791A7),
+                                                    ),
+                                              ),
+                                              Icon(
+                                                Icons.arrow_drop_down,
+                                                color: Color(0XFF8791A7),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 24.h),
+                                      ReusableButton(
+                                        color: Color(0XFF4D84FF),
+                                        height: 55.h,
+                                        width: double.infinity,
+                                        borderRadius: 4.h,
+                                        onTap: () {},
+                                        child: Text(
+                                          'Continue',
+                                          style: context
+                                              .textTheme
+                                              .headlineSmall!
+                                              .copyWith(
+                                                fontFamily: 'CircularStd',
+                                              ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 60.h),
                                     ],
                                   ),
                                 ),
