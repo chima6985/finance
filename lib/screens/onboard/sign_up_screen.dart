@@ -1,4 +1,5 @@
 import 'package:finance_app/components/custom_back_button.dart';
+import 'package:finance_app/components/custom_textfield.dart';
 import 'package:finance_app/components/decorated_container_two.dart';
 import 'package:finance_app/components/reusable_button.dart';
 import 'package:finance_app/extension/context.extension.dart';
@@ -18,12 +19,10 @@ class SignUpScreen extends HookWidget {
     final passwordController = useTextEditingController();
     final obscureText = useState(true);
 
-
     final hasUppercase = useState(false);
     final hasLowercase = useState(false);
     final hasNumber = useState(false);
     final hasSpecialChar = useState(false);
-
 
     void validatePassword(String password) {
       hasUppercase.value = password.contains(RegExp(r'[A-Z]'));
@@ -78,81 +77,36 @@ class SignUpScreen extends HookWidget {
                 SizedBox(
                   height: 54.h,
                   width: double.infinity,
-                  child: TextField(
+                  child: CustomTextField(
                     controller: emailController,
+                    hintText: 'Enter email address',
                     keyboardType: TextInputType.emailAddress,
-                    style: TextStyle(color: Colors.white, fontSize: 16.sp),
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0XFF14151A),
-                      hintText: 'Enter email address',
-                      hintStyle: TextStyle(
-                        fontFamily: 'CircularStd',
-                        color: Color(0XFF8791A7),
-                        fontSize: 16.sp,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(color: Color(0XFF333333)),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(color: Color(0XFF333333)),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(color: Color(0XFF5B63FF)),
-                      ),
-                    ),
                   ),
                 ),
                 SizedBox(height: 24.h),
                 SizedBox(
                   height: 54.h,
                   width: double.infinity,
-                  child: TextField(
+                  child: CustomTextField(
                     controller: passwordController,
-                    keyboardType: TextInputType.text,
+                    hintText: 'Enter password',
                     obscureText: obscureText.value,
-                    style: TextStyle(color: Colors.white, fontSize: 16.sp),
-                    decoration: InputDecoration(
-                      fillColor: Color(0XFF14151A),
-                      filled: true,
-                      hintText: 'Enter password',
-                      hintStyle: TextStyle(
-                        fontFamily: 'CircularStd',
+                    suffixIcon: InkWell(
+                      onTap: () {
+                        obscureText.value = !obscureText.value;
+                      },
+                      child: Icon(
+                        obscureText.value
+                            ? Icons.visibility_off
+                            : Icons.visibility,
                         color: Color(0XFF8791A7),
-                        fontSize: 16.sp,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(color: Color(0XFF333333)),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(color: Color(0XFF333333)),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(color: Color(0XFF5B63FF)),
-                      ),
-                      suffixIcon: InkWell(
-                        onTap: () {
-                          obscureText.value = !obscureText.value;
-                        },
-                        child: Icon(
-                          obscureText.value
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: Color(0XFF8791A7),
-                          size: 20.sp,
-                        ),
+                        size: 20.sp,
                       ),
                     ),
                   ),
                 ),
                 SizedBox(height: 16.h),
-                
+
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
