@@ -1,0 +1,101 @@
+import 'package:finance_app/extension/context.extension.dart';
+import 'package:finance_app/screens/onboard/confirmation_code_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:finance_app/components/components.dart';
+
+class AboutYouScreen extends HookWidget {
+  const AboutYouScreen({super.key});
+
+  static const String id = 'aboutYouScreen';
+
+  @override
+  Widget build(BuildContext context) {
+    final _controller = useTextEditingController();
+    return Scaffold(
+      backgroundColor: Color(0xFF0D0E12),
+      body: DecoratedContainerTwo(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15.0),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: context.topPadding),
+                CustomBackButton(buttonColor: Color(0XFF8791A7)),
+                SizedBox(height: 25.h),
+                Text(
+                  'Tell us more about you',
+                  style: context.textTheme.headlineSmall!.copyWith(
+                    fontFamily: 'CircularStd',
+                    fontSize: 24.sp,
+                  ),
+                ),
+                SizedBox(height: 12),
+                Text(
+                  'Please use your name as it appears in\nyour ID.',
+                  style: context.textTheme.bodyMedium!.copyWith(
+                    fontFamily: 'CircularStd',
+                    color: Color(0XFF8791A7),
+                    fontSize: 16.sp,
+                  ),
+                ),
+                SizedBox(height: 32.h),
+                CustomTextField(
+                  controller: _controller,
+                  hintText: 'First Name',
+                  keyboardType:
+                      TextInputType
+                          .emailAddress, // Change to TextInputType.name
+                ),
+                SizedBox(height: 24.h),
+                CustomTextField(
+                  controller: _controller,
+                  hintText: 'Last Name',
+                  keyboardType:
+                      TextInputType
+                          .emailAddress, // Change to TextInputType.name
+                ),
+                SizedBox(height: 24.h),
+                CustomTextField(
+                  controller: _controller,
+                  hintText: 'Phone Number',
+                  keyboardType:
+                      TextInputType
+                          .emailAddress, // Change to TextInputType.name
+                ),
+                SizedBox(height: 24.h),
+                CustomTextField(
+                  controller: _controller,
+                  hintText: 'Date of birth',
+                  suffixIcon: Icon(Icons.calendar_month),
+                  keyboardType:
+                      TextInputType
+                          .emailAddress, // Change to TextInputType.name
+                ),
+                SizedBox(height: 170.h),
+                ReusableButton(
+                  color: Color(0XFF4D84FF),
+                  height: 55.h,
+                  width: double.infinity,
+                  borderRadius: 4.h,
+                  onTap: () {
+                    context.pushNamed(ConfirmationCodeScreen.id);
+                  },
+                  child: Text(
+                    'Continue',
+                    style: context.textTheme.headlineSmall!.copyWith(
+                      fontFamily: 'CircularStd',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

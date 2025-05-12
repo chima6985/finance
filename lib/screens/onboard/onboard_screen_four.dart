@@ -1,12 +1,13 @@
 import 'dart:developer';
-
 import 'package:finance_app/components/components.dart';
 import 'package:finance_app/extension/context.extension.dart';
-import 'package:finance_app/screens/onboard/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:go_router/go_router.dart';
+import 'package:finance_app/screens/onboard/onboard.dart';
+
+
 
 class OnboardScreenFour extends StatelessWidget {
   const OnboardScreenFour({super.key});

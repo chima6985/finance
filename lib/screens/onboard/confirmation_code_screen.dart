@@ -1,25 +1,20 @@
-import 'package:finance_app/components/custom_back_button.dart';
-import 'package:finance_app/components/custom_textfield.dart';
-import 'package:finance_app/components/decorated_container_two.dart';
+import 'package:finance_app/components/components.dart';
+import 'package:finance_app/components/custom_pin_field.dart';
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AboutYouScreen extends HookWidget {
-  const AboutYouScreen({super.key});
+class ConfirmationCodeScreen extends StatelessWidget {
+  const ConfirmationCodeScreen({super.key});
 
-  static const String id = 'aboutYouScreen';
-
+  static const String id = 'confirmationCodeScreen';
   @override
   Widget build(BuildContext context) {
-    final _controller = useTextEditingController();
     return Scaffold(
-      backgroundColor: Color(0xFF0D0E12),
       body: DecoratedContainerTwo(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.0),
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -27,7 +22,7 @@ class AboutYouScreen extends HookWidget {
                 CustomBackButton(buttonColor: Color(0XFF8791A7)),
                 SizedBox(height: 25.h),
                 Text(
-                  'Tell us more about you',
+                  'Enter your confirmation code',
                   style: context.textTheme.headlineSmall!.copyWith(
                     fontFamily: 'CircularStd',
                     fontSize: 24.sp,
@@ -35,21 +30,15 @@ class AboutYouScreen extends HookWidget {
                 ),
                 SizedBox(height: 12),
                 Text(
-                  'Please use your name as it appears in\nyour ID.',
+                  'We sent an email to oke@mail.com.\nPlease type it in',
                   style: context.textTheme.bodyMedium!.copyWith(
                     fontFamily: 'CircularStd',
                     color: Color(0XFF8791A7),
                     fontSize: 16.sp,
                   ),
                 ),
-                SizedBox(height: 32.h),
-                CustomTextField(
-                  controller: _controller,
-                  hintText: 'First Name',
-                  keyboardType:
-                      TextInputType
-                          .emailAddress, // Change to TextInputType.name
-                ),
+                SizedBox(height: 48),
+                CustomPinField(length: 6,),
               ],
             ),
           ),
