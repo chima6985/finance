@@ -19,6 +19,8 @@ dependencies:
   flutter_screenutil: ^5.9.3
   smooth_page_indicator: ^1.2.1
   country_picker: ^2.0.27
+  iconsax: ^0.0.8
+  flutter_hooks: ^0.21.2
 
 
 

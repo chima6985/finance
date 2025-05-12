@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:finance_app/components/components.dart';
 import 'package:finance_app/extension/context.extension.dart';
+import 'package:finance_app/screens/onboard/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:country_picker/country_picker.dart';
+import 'package:go_router/go_router.dart';
 
 class OnboardScreenFour extends StatelessWidget {
   const OnboardScreenFour({super.key});
@@ -143,8 +145,7 @@ class OnboardScreenFour extends StatelessWidget {
                                                       ),
                                                 ),
 
-                                            showPhoneCode:
-                                                false, // optional. Shows phone code before the country name.
+                                            showPhoneCode: false,
                                             onSelect: (Country country) {
                                               log(
                                                 'Select country: ${country.displayName}',
@@ -187,7 +188,15 @@ class OnboardScreenFour extends StatelessWidget {
                                         height: 55.h,
                                         width: double.infinity,
                                         borderRadius: 4.h,
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder:
+                                                  (context) => SignUpScreen()
+                                            ),
+                                          );
+                                        },
                                         child: Text(
                                           'Continue',
                                           style: context

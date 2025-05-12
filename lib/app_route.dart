@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:finance_app/screens/onboard/sign_up_screen.dart';
 import 'package:finance_app/screens/onboard/onboard.dart';
 import 'package:finance_app/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -15,6 +16,7 @@ class NavObserver extends NavigatorObserver {
     log('route `popped` from $previousRoute ---> $route');
   }
 }
+
 final router = GoRouter(
   initialLocation: '/',
   observers: [NavObserver()],
@@ -26,9 +28,14 @@ final router = GoRouter(
       name: SplashScreen.id,
     ),
     GoRoute(
-      name: OnboardingWrapper.id,
       path: '/onboardingWrapper',
       builder: (context, state) => const OnboardingWrapper(),
+      name: OnboardingWrapper.id,
+    ),
+    GoRoute(
+      path: '/signUpScreen',
+      builder: (context, state) =>  SignUpScreen(),
+      name: SignUpScreen.id,
     ),
   ],
 );
