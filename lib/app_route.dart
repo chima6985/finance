@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:finance_app/screens/onboard/about_you_screen.dart';
 import 'package:finance_app/screens/onboard/sign_up_screen.dart';
 import 'package:finance_app/screens/onboard/onboard.dart';
 import 'package:finance_app/screens/splash_screen.dart';
@@ -37,5 +38,10 @@ final router = GoRouter(
       builder: (context, state) =>  SignUpScreen(),
       name: SignUpScreen.id,
     ),
+    GoRoute(
+      path: '/aboutYouScreen',
+      builder: (context, state) => AboutYouScreen(),
+      name: AboutYouScreen.id,
+      )
   ],
 );
