@@ -1,7 +1,9 @@
 import 'package:finance_app/components/components.dart';
 import 'package:finance_app/extension/context.extension.dart';
+import 'package:finance_app/screens/mono_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class PinConfirmationScreen extends StatelessWidget {
   const PinConfirmationScreen({super.key});
@@ -32,7 +34,7 @@ class PinConfirmationScreen extends StatelessWidget {
                   length: 4,
                   onComplete: (p0) async {
                     await Future.delayed(Duration(seconds: 2), () {
-                      // context.pushNamed(SelfieUploadScreen.id);
+                      context.pushNamed(MonoScreen.id);
                     });
                   },
                 ),

@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:finance_app/screens/mono_screen.dart';
 import 'package:finance_app/screens/onboard/onboard.dart';
 import 'package:finance_app/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -17,7 +18,7 @@ class NavObserver extends NavigatorObserver {
 }
 
 final router = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/monoScreen',
   observers: [NavObserver()],
 
   routes: [
@@ -53,18 +54,23 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/idUploadScreen',
-      builder: (context, state) => IdUploadScreen(),
+      builder: (context, state) => const IdUploadScreen(),
       name: IdUploadScreen.id,
     ),
     GoRoute(
       path: '/pinConfirmationScreen',
-      builder: (context, state) => PinConfirmationScreen(),
+      builder: (context, state) => const PinConfirmationScreen(),
       name: PinConfirmationScreen.id,
     ),
     GoRoute(
       path: '/setPinScreen',
-      builder: (context, state) => SetPinScreen(),
+      builder: (context, state) => const SetPinScreen(),
       name: SetPinScreen.id,
+    ),
+    GoRoute(
+      path: '/monoScreen',
+      builder: (context, state) => const  MonoScreen(),
+      name: MonoScreen.id,
     ),
   ],
 );
