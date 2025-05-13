@@ -27,15 +27,6 @@ class PinConfirmationScreen extends StatelessWidget {
                     fontSize: 24.sp,
                   ),
                 ),
-                // SizedBox(height: 12),
-                // Text(
-                //   'You’ll use this PIN for signing in and confirming\nyour transactions',
-                //   style: context.textTheme.bodyMedium!.copyWith(
-                //     fontFamily: 'CircularStd',
-                //     color: Color(0XFF8791A7),
-                //     fontSize: 16.sp,
-                //   ),
-                // ),
                 SizedBox(height: 80),
                 CustomPinField(
                   length: 4,
@@ -45,17 +36,6 @@ class PinConfirmationScreen extends StatelessWidget {
                     });
                   },
                 ),
-                // Center(
-                //   child: Text(
-                //     textAlign: TextAlign.center,
-                //     'Please make sure to put a pin you can\neasily remember.',
-                //     style: context.textTheme.bodyLarge!.copyWith(
-                //       fontFamily: 'CircularStd',
-                //     color: Color(0XFF8791A7),
-
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ),

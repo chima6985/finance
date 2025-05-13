@@ -32,7 +32,7 @@ class SetPinScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 12),
                 Text(
-                  'You’ll use this PIN for signing in and confirming\nyour transactions',
+                  'You’ll use this PIN for signing in and confirming your transactions',
                   style: context.textTheme.bodyMedium!.copyWith(
                     fontFamily: 'CircularStd',
                     color: Color(0XFF8791A7),

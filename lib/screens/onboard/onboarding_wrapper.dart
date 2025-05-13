@@ -20,7 +20,7 @@ class _OnboardingWrapperState extends State<OnboardingWrapper> {
   void _next() {
     if (_currentPage < 3) {
       _pageController.nextPage(
-        duration: const Duration(seconds: 1),
+        duration: Duration(milliseconds: (1.5 * 1000).toInt()),
         curve: Curves.easeInOut,
       );
     }

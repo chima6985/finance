@@ -59,7 +59,7 @@ final router = GoRouter(
     GoRoute(
       path: '/pinConfirmationScreen',
       builder: (context, state) => PinConfirmationScreen(),
-      name: ConfirmationCodeScreen.id,
+      name: PinConfirmationScreen.id,
     ),
     GoRoute(
       path: '/setPinScreen',
