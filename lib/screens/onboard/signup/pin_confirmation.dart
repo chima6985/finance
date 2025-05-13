@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PinConfirmationScreen extends StatelessWidget {
-  const PinConfirmationScreen ({super.key});
+  const PinConfirmationScreen({super.key});
 
- static const String id = 'pinConfirmationScreen';
+  static const String id = 'pinConfirmationScreen';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +52,7 @@ class PinConfirmationScreen extends StatelessWidget {
                 //     style: context.textTheme.bodyLarge!.copyWith(
                 //       fontFamily: 'CircularStd',
                 //     color: Color(0XFF8791A7),
-                      
+
                 //     ),
                 //   ),
                 // ),

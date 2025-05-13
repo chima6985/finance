@@ -1,7 +1,9 @@
 import 'package:finance_app/components/components.dart';
 import 'package:finance_app/extension/context.extension.dart';
+import 'package:finance_app/screens/onboard/onboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class SetPinScreen extends StatelessWidget {
   const SetPinScreen({super.key});
@@ -42,7 +44,7 @@ class SetPinScreen extends StatelessWidget {
                   length: 4,
                   onComplete: (p0) async {
                     await Future.delayed(Duration(seconds: 2), () {
-                      // context.pushNamed(SelfieUploadScreen.id);
+                      context.pushNamed(PinConfirmationScreen.id);
                     });
                   },
                 ),
@@ -52,8 +54,7 @@ class SetPinScreen extends StatelessWidget {
                     'Please make sure to put a pin you can\neasily remember.',
                     style: context.textTheme.bodyLarge!.copyWith(
                       fontFamily: 'CircularStd',
-                    color: Color(0XFF8791A7),
-                      
+                      color: Color(0XFF8791A7),
                     ),
                   ),
                 ),

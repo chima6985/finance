@@ -1,7 +1,9 @@
 import 'package:finance_app/components/components.dart';
 import 'package:finance_app/extension/context.extension.dart';
+import 'package:finance_app/screens/onboard/signup/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class IdUploadScreen extends StatelessWidget {
   const IdUploadScreen({super.key});
@@ -67,7 +69,7 @@ class IdUploadScreen extends StatelessWidget {
                       width: double.infinity,
                       borderRadius: 4.h,
                       onTap: () {
-                        // context.pushNamed(AboutYouScreen.id);
+                        context.pushNamed(SetPinScreen.id);
                       },
                       child: Text(
                         'Continue',
