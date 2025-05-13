@@ -9,19 +9,20 @@ class CustomPinField extends StatelessWidget {
     required this.length,
     this.onTap,
     this.obscureText = true,
+    this.onComplete,
   });
 
   final TextEditingController? controller;
   final VoidCallback? onTap;
   final int length;
   final bool obscureText;
+  final void Function(String)? onComplete;
 
   @override
   Widget build(BuildContext context) {
     return Material(
       type: MaterialType.transparency,
       child: PinCodeTextField(
-        
         appContext: context,
         length: length,
         keyboardType: TextInputType.numberWithOptions(decimal: true),
@@ -36,6 +37,7 @@ class CustomPinField extends StatelessWidget {
         ),
         obscuringCharacter: '*',
         obscureText: obscureText,
+        onCompleted: onComplete,
         pinTheme: PinTheme(
           activeColor: Color(0XFF2D2D2F),
           selectedColor: Color(0XFF2D2D2F),

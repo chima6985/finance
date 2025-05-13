@@ -1,5 +1,5 @@
 import 'package:finance_app/extension/context.extension.dart';
-import 'package:finance_app/screens/onboard/confirmation_code_screen.dart';
+import 'package:finance_app/screens/onboard/signup/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
