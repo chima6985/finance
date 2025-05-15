@@ -1,11 +1,13 @@
-import 'package:finance_app/components/decorated_container_two.dart';
+import 'package:finance_app/components/components.dart';
 import 'package:finance_app/extension/context.extension.dart';
+import 'package:finance_app/screens/mono_success_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class MonoScreen extends StatelessWidget {
   const MonoScreen({super.key});
+
   static const String id = 'monoScreen';
 
   @override
@@ -16,7 +18,7 @@ class MonoScreen extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: [
-              SizedBox(height: 85.h),
+              SizedBox(height: 100.h),
               Image.asset('assets/images/jpegs/mono.png'),
               SizedBox(height: 32),
               Text(
@@ -26,12 +28,46 @@ class MonoScreen extends StatelessWidget {
                   fontFamily: 'CircularStd',
                 ),
               ),
-              SizedBox(height: 40),
+              SizedBox(height: 40.h),
               _MonoTile(
-                iconPath: 'assets/images/svg/check.svg',
+                iconPath: 'assets/images/jpegs/check.png',
                 title: 'Secure',
                 message:
-                    'Transfer of all your information is encrypted end-to-end',
+                    'Transfer of all your information is encrypted\nend-to-end',
+              ),
+              SizedBox(height: 24.h),
+              _MonoTile(
+                iconPath: 'assets/images/jpegs/check.png',
+                title: 'Secure',
+                message:
+                    'Transfer of all your information is encrypted\nend-to-end',
+              ),
+              SizedBox(height: 100.h),
+              ReusableButton(
+                color: Color(0XFF4D84FF),
+                height: 55.h,
+                width: double.infinity,
+                borderRadius: 4.h,
+                onTap: () {
+                  context.pushNamed(MonoSuccessScreen.id);
+                },
+                child: Text(
+                  'Continue',
+                  style: context.textTheme.headlineSmall!.copyWith(
+                    fontFamily: 'CircularStd',
+                  ),
+                ),
+              ),
+              SizedBox(height: 20.h),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Skip',
+                  style: context.textTheme.bodyLarge!.copyWith(
+                    fontFamily: 'CircularStd',
+                    color: Color(0XFF8791A7),
+                  ),
+                ),
               ),
             ],
           ),
@@ -43,7 +79,6 @@ class MonoScreen extends StatelessWidget {
 
 class _MonoTile extends StatelessWidget {
   const _MonoTile({
-    super.key,
     required this.iconPath,
     required this.title,
     required this.message,
@@ -60,7 +95,7 @@ class _MonoTile extends StatelessWidget {
         ListTile(
           onTap: () {},
           titleAlignment: ListTileTitleAlignment.top,
-          leading: SvgPicture.asset(iconPath, width: 24, height: 24),
+          leading: Image.asset(iconPath, width: 24, height: 24),
           title: Text(
             title,
             style: context.textTheme.bodyMedium!.copyWith(

@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:finance_app/components/components.dart';
-import 'package:finance_app/components/custom_pin_field.dart';
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:finance_app/screens/onboard/onboard.dart';
 import 'package:flutter/material.dart';

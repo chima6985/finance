@@ -1,5 +1,7 @@
 import 'dart:developer';
+import 'package:finance_app/screens/dashboard/dashboard.dart';
 import 'package:finance_app/screens/mono_screen.dart';
+import 'package:finance_app/screens/mono_success_screen.dart';
 import 'package:finance_app/screens/onboard/onboard.dart';
 import 'package:finance_app/screens/splash_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -18,7 +20,7 @@ class NavObserver extends NavigatorObserver {
 }
 
 final router = GoRouter(
-  initialLocation: '/monoScreen',
+  initialLocation: '/',
   observers: [NavObserver()],
 
   routes: [
@@ -69,8 +71,28 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/monoScreen',
-      builder: (context, state) => const  MonoScreen(),
+      builder: (context, state) => const MonoScreen(),
       name: MonoScreen.id,
+    ),
+    GoRoute(
+      path: '/monoSuccessScreen',
+      builder: (context, state) => const MonoSuccessScreen(),
+      name: MonoSuccessScreen.id,
+    ),
+    GoRoute(
+      path: '/pinLoginScreen',
+      builder: (context, state) => const PinLoginScreen(),
+      name: PinLoginScreen.id,
+    ),
+    GoRoute(
+      path: '/loginScreen',
+      builder: (context, state) => LoginScreen(),
+      name: LoginScreen.id,
+    ),
+    GoRoute(
+      path: '/homeScreen',
+      builder: (context, state) => HomeScreen(),
+      name: HomeScreen.id,
     ),
   ],
 );

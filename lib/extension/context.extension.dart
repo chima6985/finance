@@ -5,4 +5,4 @@ extension AppExtensions on BuildContext {
   TextTheme get textTheme => Theme.of(this).textTheme;
   double get topPadding => MediaQuery.of(this).viewPadding.top + 5.h;
   double get btmPadding => MediaQuery.of(this).viewPadding.bottom + 5.h;
-    bool get isTablet => MediaQuery.of(this).size.shortestSide > 550;}
+  bool get isTablet => MediaQuery.of(this).size.shortestSide > 550;}
