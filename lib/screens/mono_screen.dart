@@ -42,7 +42,7 @@ class MonoScreen extends StatelessWidget {
                 message:
                     'Transfer of all your information is encrypted\nend-to-end',
               ),
-              SizedBox(height: 100.h),
+              SizedBox(height: 90.h),
               ReusableButton(
                 color: Color(0XFF4D84FF),
                 height: 55.h,
