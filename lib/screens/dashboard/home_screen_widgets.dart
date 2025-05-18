@@ -86,13 +86,15 @@ class TokenRate extends StatelessWidget {
     required this.imagePath,
     required this.title,
     required this.rate,
-    required this.color,
+    required this.textcolor,
+    required this.backgrouondColor,
   });
 
   final String imagePath;
   final String title;
   final String rate;
-  final Color color;
+  final Color textcolor;
+  final Color backgrouondColor;
 
   @override
   Widget build(BuildContext context) {
@@ -100,10 +102,16 @@ class TokenRate extends StatelessWidget {
       decoration: BoxDecoration(
         color: Color(0XFFFFFFFF),
         borderRadius: BorderRadius.circular(4),
-        boxShadow: [BoxShadow(offset: Offset(0, 4), blurRadius: 8)],
+        boxShadow: [
+          BoxShadow(
+            offset: Offset(0, 1),
+            blurRadius: 1,
+            color: Colors.black.withOpacity(0.7),
+          ),
+        ],
       ),
       height: 130.h,
-      width: 138.w,
+      width: 128.w,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -120,17 +128,17 @@ class TokenRate extends StatelessWidget {
           Container(
             height: 20.h,
             width: 65.h,
-            // color: color,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(58)),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 10.0,
-                vertical: 1,
-              ),
+
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(58),
+              color: backgrouondColor,
+            ),
+            child: Center(
               child: Text(
                 rate,
                 style: context.textTheme.titleMedium!.copyWith(
                   fontFamily: 'CircularStd',
+                  color: textcolor,
                   // color: color,
                 ),
               ),

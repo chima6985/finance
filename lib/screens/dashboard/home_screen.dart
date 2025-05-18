@@ -16,6 +16,7 @@ class HomeScreen extends HookWidget {
 
     return DecoratedContinerThree(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: context.topPadding),
           Padding(
@@ -255,14 +256,52 @@ class HomeScreen extends HookWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 24.h),
-                  TokenRate(
-                    imagePath: 'assets/images/jpegs/breeze.png',
-                    title: 'BREZ',
-                    rate: '+1.63%',
-                    color: Color(0XFF27AE60),
+                  SizedBox(height: 18.h),
+                  SizedBox(
+                    height: 135.h,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      physics: ClampingScrollPhysics(),
+                      children: [
+                        TokenRate(
+                          imagePath: 'assets/images/jpegs/breeze.png',
+                          title: 'BREZ',
+                          rate: '+1.63%',
+                          backgrouondColor: Color(0XFFE2F8EB),
+                          textcolor: Color(0XFF27AE60),
+                        ),
+                        SizedBox(width: 16.w),
+                        TokenRate(
+                          imagePath: 'assets/images/jpegs/flcn.png',
+                          title: 'FLCN',
+                          rate: '-0.40%',
+                          backgrouondColor: Color(0XFFFEE6E6),
+                          textcolor: Color(0XFFE84343),
+                        ),
+                        SizedBox(width: 16.w),
+                        TokenRate(
+                          imagePath: 'assets/images/jpegs/on.png',
+                          title: 'ON',
+                          rate: '+1.63%',
+                          backgrouondColor: Color(0XFFE2F8EB),
+                          textcolor: Color(0XFF27AE60),
+                        ),
+                      ],
+                    ),
                   ),
+                  SizedBox(height: 14.h),
                 ],
+              ),
+            ),
+          ),
+          SizedBox(height: 40.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            child: Text(
+              'New-In',
+              style: context.textTheme.headlineSmall!.copyWith(
+                fontFamily: 'CircularStd',
+                color: Color(0XFF001140),
               ),
             ),
           ),

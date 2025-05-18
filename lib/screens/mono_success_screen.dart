@@ -1,7 +1,9 @@
 import 'package:finance_app/components/components.dart';
 import 'package:finance_app/extension/context.extension.dart';
+import 'package:finance_app/screens/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class MonoSuccessScreen extends StatelessWidget {
   const MonoSuccessScreen({super.key});
@@ -42,7 +44,7 @@ class MonoSuccessScreen extends StatelessWidget {
                 width: double.infinity,
                 borderRadius: 4.h,
                 onTap: () {
-                  // context.pushNamed(ConfirmationCodeScreen.id);
+                  context.pushNamed(HomeScreen.id);
                 },
                 child: Text(
                   'Continue To Dashboard',

@@ -28,7 +28,9 @@ class SelfieUploadScreen extends StatelessWidget {
                     CircleAvatar(
                       backgroundColor: Color(0XFF4D84FF),
                       radius: 80.sp,
-                      child: Image.asset('assets/images/jpegs/avatar.png'),
+                      child: Image.asset(
+                        'assets/images/jpegs/avatar_placeholder.png',
+                      ),
                     ),
                     SizedBox(height: 24.h),
                     Text(
