@@ -9,6 +9,7 @@ class BalanceContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(left: 15),
       width: 325.w,
       decoration: BoxDecoration(
         color: Color(0XFFFFFFFF),
@@ -105,8 +106,9 @@ class TokenRate extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             offset: Offset(0, 1),
-            blurRadius: 1,
-            color: Colors.black.withOpacity(0.7),
+            blurRadius: 7,
+            spreadRadius: 3,
+            color: Colors.black.withOpacity(0.1),
           ),
         ],
       ),

@@ -16,6 +16,7 @@ class HomeScreen extends HookWidget {
   Widget build(BuildContext context) {
     final currentPosition = useState(initialIndex);
     final isVisible = useState(true);
+    final balanceContainerController = usePageController();
 
     return DecoratedContinerThree(
       child: Column(
@@ -31,10 +32,15 @@ class HomeScreen extends HookWidget {
                   child: Image.asset('assets/images/jpegs/avatar.png'),
                 ),
                 SizedBox(width: 12.w),
-                Text(
-                  'Hello Chima',
-                  style: context.textTheme.headlineSmall!.copyWith(
-                    fontFamily: 'CircularStd',
+                InkWell(
+                  onTap: (){
+                  
+                  },
+                  child: Text(
+                    'Hello Chima',
+                    style: context.textTheme.headlineSmall!.copyWith(
+                      fontFamily: 'CircularStd',
+                    ),
                   ),
                 ),
                 Spacer(),
@@ -55,124 +61,145 @@ class HomeScreen extends HookWidget {
               shrinkWrap: true,
               physics: BouncingScrollPhysics(),
               children: [
-                BalanceContainer(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
+                Stack(
+                  children: [
+                    BalanceContainer(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15..w),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Available Cash',
-                              style: context.textTheme.bodyMedium!.copyWith(
-                                fontFamily: 'CircularStd',
-                                color: Color(0XFF4F5877),
-                              ),
-                            ),
-                            SizedBox(width: 12.w),
-                            InkWell(
-                              onTap: () {
-                                isVisible.value = !isVisible.value;
-                              },
-                              child: Icon(
-                                isVisible.value
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                              ),
-                            ),
-                            Spacer(),
-                            GestureDetector(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0XFF4D84FF),
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-
-                                child: Padding(
-                                  padding: const EdgeInsets.all(7.0),
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.add, color: Colors.white),
-                                      Text(
-                                        'Add to Wallet',
-                                        style: context.textTheme.bodyMedium!
-                                            .copyWith(
-                                              fontFamily: 'CircularStd',
-                                            ),
-                                      ),
-                                    ],
+                            Row(
+                              children: [
+                                Text(
+                                  'Available Cash',
+                                  style: context.textTheme.bodyMedium!.copyWith(
+                                    fontFamily: 'CircularStd',
+                                    color: Color(0XFF4F5877),
                                   ),
                                 ),
+                                SizedBox(width: 12.w),
+                                InkWell(
+                                  onTap: () {
+                                    isVisible.value = !isVisible.value;
+                                  },
+                                  child: Icon(
+                                    isVisible.value
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                  ),
+                                ),
+                                Spacer(),
+                                GestureDetector(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Color(0XFF4D84FF),
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(7.0),
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.add, color: Colors.white),
+                                          Text(
+                                            'Add to Wallet',
+                                            style: context.textTheme.bodyMedium!
+                                                .copyWith(
+                                                  fontFamily: 'CircularStd',
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 4.h),
+                            Text(
+                              isVisible.value ? '\$0.00' : '****',
+                              style: context.textTheme.displayMedium!.copyWith(
+                                fontFamily: 'CircularStd',
+                                color: Color(0XFF001140),
+                                fontWeight: FontWeight.w400,
                               ),
                             ),
                           ],
                         ),
-                        SizedBox(height: 4.h),
-                        Text(
-                          isVisible.value ? '\$0.00' : '****',
-                          style: context.textTheme.displayMedium!.copyWith(
-                            fontFamily: 'CircularStd',
-                            color: Color(0XFF001140),
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      bottom: 8,
+                      right: 8,
+                      child: PageIndicator(
+                        balanceContainerController: balanceContainerController,
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(width: 8.h),
-                BalanceContainer(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
+                Stack(
+                  children: [
+                    BalanceContainer(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Tokens(
-                            child: TokenItem(
-                              imagePath: 'assets/images/jpegs/breeze.png',
-                              amount: '100',
-                            ),
-                          ),
-                          SizedBox(width: 10.w),
-                          Tokens(
-                            child: TokenItem(
-                              imagePath: 'assets/images/jpegs/flcn.png',
-                              amount: '130',
-                            ),
-                          ),
-                          SizedBox(width: 10.w),
-                          Tokens(
-                            child: TokenItem(
-                              imagePath: 'assets/images/jpegs/on.png',
-                              amount: '100',
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      Row(
-                        children: [
-                          InkWell(
-                            onTap: (){},
-                            child: Text(
-                              'View all my tokens',
-                              style: context.textTheme.bodyMedium!.copyWith(
-                                fontFamily: 'CircularStd',
-                                color: Color(0Xff4D84FF),
+                          Row(
+                            children: [
+                              Tokens(
+                                child: TokenItem(
+                                  imagePath: 'assets/images/jpegs/breeze.png',
+                                  amount: '100',
+                                ),
                               ),
-                            ),
+                              SizedBox(width: 10.w),
+                              Tokens(
+                                child: TokenItem(
+                                  imagePath: 'assets/images/jpegs/flcn.png',
+                                  amount: '130',
+                                ),
+                              ),
+                              SizedBox(width: 10.w),
+                              Tokens(
+                                child: TokenItem(
+                                  imagePath: 'assets/images/jpegs/on.png',
+                                  amount: '100',
+                                ),
+                              ),
+                            ],
                           ),
-                          SizedBox(width: 4.w),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            size: 14,
-                            color: Color(0XFF4D84FF),
+                          SizedBox(height: 20),
+                          Row(
+                            children: [
+                              InkWell(
+                                onTap: () {},
+                                child: Text(
+                                  'View all my tokens',
+                                  style: context.textTheme.bodyMedium!.copyWith(
+                                    fontFamily: 'CircularStd',
+                                    color: Color(0Xff4D84FF),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 4.w),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                size: 14,
+                                color: Color(0XFF4D84FF),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                    Positioned(
+                      bottom: 8,
+                      right: 8,
+                      child: PageIndicator(
+                        balanceContainerController: balanceContainerController,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -264,10 +291,11 @@ class HomeScreen extends HookWidget {
                   ),
                   SizedBox(height: 18.h),
                   SizedBox(
-                    height: 135.h,
+                    height: 140.h,
                     child: ListView(
+                      padding: EdgeInsets.all(5),
                       scrollDirection: Axis.horizontal,
-                      physics: ClampingScrollPhysics(),
+                      physics: BouncingScrollPhysics(),
                       children: [
                         TokenRate(
                           imagePath: 'assets/images/jpegs/breeze.png',

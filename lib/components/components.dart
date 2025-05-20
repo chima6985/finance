@@ -6,6 +6,10 @@ export 'package:finance_app/components/custom_back_button.dart';
 export 'package:finance_app/components/custom_pin_field.dart';
 export 'package:finance_app/components/decorated_continer_three.dart';
 export 'package:finance_app/components/bottom_nav_button.dart';
+export 'package:finance_app/components/page_indicator.dart';
+export 'package:finance_app/components/dialogue.dart';
+
+
 
 
 
