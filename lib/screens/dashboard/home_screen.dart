@@ -33,8 +33,37 @@ class HomeScreen extends HookWidget {
                 ),
                 SizedBox(width: 12.w),
                 InkWell(
-                  onTap: (){
-                  
+                  onTap: () {
+                    CustomDialog.show(
+                      imagePath: 'assets/images/jpegs/notification_icon.png',
+                      context: context,
+                      onSecondaryPressed: () => Navigator.pop(context),
+                      onCancelPressed: () => Navigator.pop(context),
+                      primaryButtonText: 'Not Now',
+                      onPrimaryPressed: () {},
+                      buttonColor: Color(0XFf4D84FF),
+                      secondaryButtonText: 'Turn on',
+                      content: Column(
+                        children: [
+                          Text(
+                            'Turn on notifications',
+                            style: context.textTheme.headlineSmall!.copyWith(
+                              fontFamily: 'CircularStd',
+                              color: Color(0XFF001140),
+                            ),
+                          ),
+                          SizedBox(height: 10.h,),
+                          Text(
+                            textAlign: TextAlign.center,
+                            'You will get updates when important\nevents happen',
+                            style: context.textTheme.bodyMedium!.copyWith(
+                              fontFamily: 'CircularStd',
+                              color: Color(0XFF001140),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
                   },
                   child: Text(
                     'Hello Chima',
