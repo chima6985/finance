@@ -1,17 +1,20 @@
 import 'package:finance_app/components/components.dart';
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:finance_app/screens/dashboard/home_screen_widgets.dart';
 
 class HomeScreen extends HookWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, this.initialIndex = 0});
   static const String id = 'homeScreen';
+  final int initialIndex;
 
   @override
   Widget build(BuildContext context) {
+    final currentPosition = useState(initialIndex);
     final isVisible = useState(true);
 
     return DecoratedContinerThree(
@@ -29,7 +32,7 @@ class HomeScreen extends HookWidget {
                 ),
                 SizedBox(width: 12.w),
                 Text(
-                  'Hello Daniel',
+                  'Hello Chima',
                   style: context.textTheme.headlineSmall!.copyWith(
                     fontFamily: 'CircularStd',
                   ),
@@ -150,11 +153,14 @@ class HomeScreen extends HookWidget {
                       SizedBox(height: 20),
                       Row(
                         children: [
-                          Text(
-                            'View all my tokens',
-                            style: context.textTheme.bodyMedium!.copyWith(
-                              fontFamily: 'CircularStd',
-                              color: Color(0Xff4D84FF),
+                          InkWell(
+                            onTap: (){},
+                            child: Text(
+                              'View all my tokens',
+                              style: context.textTheme.bodyMedium!.copyWith(
+                                fontFamily: 'CircularStd',
+                                color: Color(0Xff4D84FF),
+                              ),
                             ),
                           ),
                           SizedBox(width: 4.w),
@@ -233,7 +239,7 @@ class HomeScreen extends HookWidget {
           Container(
             color: Color(0XFFF8F9FC),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 15..w, vertical: 10.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -302,6 +308,80 @@ class HomeScreen extends HookWidget {
               style: context.textTheme.headlineSmall!.copyWith(
                 fontFamily: 'CircularStd',
                 color: Color(0XFF001140),
+              ),
+            ),
+          ),
+          SizedBox(height: 8.h),
+          Divider(color: Color(0XFF4F5877).withAlpha(50)),
+          Padding(
+            padding: EdgeInsets.fromLTRB(20.w, 8, 20.w, context.btmPadding),
+            child: Container(
+              child: Row(
+                mainAxisAlignment:
+                    context.isTablet
+                        ? MainAxisAlignment.center
+                        : MainAxisAlignment.spaceBetween,
+                children: [
+                  BottomNavButton(
+                    buttonName: 'OverView',
+                    buttonIcon: 'assets/images/svgs/overview.svg',
+                    currentPosition: currentPosition.value,
+                    onPressed: () {
+                      if (0 != currentPosition.value) {
+                        currentPosition.value = 0;
+                        HapticFeedback.lightImpact();
+                      }
+                    },
+                  ),
+                  BottomNavButton(
+                    buttonName: 'Trade',
+                    buttonIcon: 'assets/images/svgs/trade.svg',
+                    position: 1,
+                    currentPosition: currentPosition.value,
+                    onPressed: () {
+                      if (1 != currentPosition.value) {
+                        currentPosition.value = 1;
+                        HapticFeedback.lightImpact();
+                      }
+                    },
+                  ),
+                  BottomNavButton(
+                    buttonName: 'Transactions',
+                    buttonIcon: 'assets/images/svgs/transaction.svg',
+                    position: 2,
+                    currentPosition: currentPosition.value,
+                    onPressed: () {
+                      if (2 != currentPosition.value) {
+                        currentPosition.value = 2;
+                        HapticFeedback.lightImpact();
+                      }
+                    },
+                  ),
+                  BottomNavButton(
+                    buttonName: 'Wallet',
+                    buttonIcon: 'assets/images/svgs/wallet.svg',
+                    position: 3,
+                    currentPosition: currentPosition.value,
+                    onPressed: () {
+                      if (3 != currentPosition.value) {
+                        currentPosition.value = 3;
+                        HapticFeedback.lightImpact();
+                      }
+                    },
+                  ),
+                  BottomNavButton(
+                    buttonName: 'More',
+                    buttonIcon: 'assets/images/svgs/more.svg',
+                    position: 4,
+                    currentPosition: currentPosition.value,
+                    onPressed: () {
+                      if (4 != currentPosition.value) {
+                        currentPosition.value = 4;
+                        HapticFeedback.lightImpact();
+                      }
+                    },
+                  ),
+                ],
               ),
             ),
           ),
