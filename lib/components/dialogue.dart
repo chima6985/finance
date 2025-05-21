@@ -26,12 +26,8 @@ class CustomDialog {
                   borderRadius: BorderRadius.circular(8),
                   color: Color(0XFFFFFFFF),
                 ),
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                padding: EdgeInsets.only(
-                  top: 30.h,
-                  left: 20.w,
-                  right: 20.w,
-                  bottom: 21.h,
+                margin:  EdgeInsets.symmetric(horizontal: 20.h),
+                padding: EdgeInsets.fromLTRB(20.h,30.h,20.h,21.h
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -54,17 +50,20 @@ class CustomDialog {
                             ),
                           ),
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            color: buttonColor,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              primaryButtonText,
-                              style: context.textTheme.bodyLarge!.copyWith(
-                                fontFamily: 'CircularStd',
+                        InkWell(
+                          onTap: onCancelPressed,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              color: buttonColor,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                primaryButtonText,
+                                style: context.textTheme.bodyLarge!.copyWith(
+                                  fontFamily: 'CircularStd',
+                                ),
                               ),
                             ),
                           ),

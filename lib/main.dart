@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       builder:
           (context, child) => MaterialApp.router(
             debugShowCheckedModeBanner: false,
-            theme: ThemeData().copyWith(textTheme: _lightTextTheme),
+            theme: ThemeData(fontFamily: 'CircularStd').copyWith(textTheme: _lightTextTheme),
             routerConfig: router,
           ),
     );

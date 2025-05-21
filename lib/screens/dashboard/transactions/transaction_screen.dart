@@ -1,3 +1,4 @@
+import 'package:finance_app/components/transaction_dialogue.dart';
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:finance_app/screens/dashboard/transactions/transaction.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,10 @@ class TransactionScreen extends HookWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                        
+                        TransactionDialogue.show(
+                          
+
+                        )
                       },
                       child: Text(
                         'Transactions',
