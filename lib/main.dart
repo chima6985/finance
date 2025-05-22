@@ -2,8 +2,14 @@ import 'package:finance_app/app_route.dart';
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/services.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(const MyApp());
 }
 
@@ -14,13 +20,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize:
-      context.isTablet ? const Size(768, 1280) : const Size(375, 812),
+          context.isTablet ? const Size(768, 1280) : const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
       builder:
           (context, child) => MaterialApp.router(
             debugShowCheckedModeBanner: false,
-            theme: ThemeData(fontFamily: 'CircularStd').copyWith(textTheme: _lightTextTheme),
+            theme: ThemeData(
+              fontFamily: 'CircularStd',
+            ).copyWith(textTheme: _lightTextTheme, brightness: Brightness.dark),
             routerConfig: router,
           ),
     );

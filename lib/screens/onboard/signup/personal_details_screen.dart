@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:finance_app/components/components.dart';
+import 'package:intl/intl.dart';
 
 class AboutYouScreen extends HookWidget {
   const AboutYouScreen({super.key});
@@ -13,7 +14,21 @@ class AboutYouScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _controller = useTextEditingController();
+    final controller = useTextEditingController();
+    final selcectedDate = useState<DateTime>();
+
+    Future<void> pickDate(BuildContext context) async {
+      final date = await showDatePicker(
+        context: context, 
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2000), 
+        lastDate: DateTime(2024),);
+            if (date != null){
+      selcectedDate.value = date;
+      controller.text = DateFormat('yyy-MM-dd').format(date);
+    }
+    }
+
     return Scaffold(
       backgroundColor: Color(0xFF0D0E12),
       body: DecoratedContainerTwo(
@@ -44,36 +59,36 @@ class AboutYouScreen extends HookWidget {
                 ),
                 SizedBox(height: 32.h),
                 CustomTextField(
-                  controller: _controller,
+                  controller: controller,
                   hintText: 'First Name',
                   keyboardType:
                       TextInputType
-                          .emailAddress, // Change to TextInputType.name
+                          .name, 
                 ),
                 SizedBox(height: 24.h),
                 CustomTextField(
-                  controller: _controller,
+                  controller: controller,
                   hintText: 'Last Name',
                   keyboardType:
                       TextInputType
-                          .emailAddress, // Change to TextInputType.name
+                          .name, 
                 ),
                 SizedBox(height: 24.h),
                 CustomTextField(
-                  controller: _controller,
+                  controller: controller,
                   hintText: 'Phone Number',
                   keyboardType:
                       TextInputType
-                          .emailAddress, // Change to TextInputType.name
+                          .number, 
                 ),
                 SizedBox(height: 24.h),
                 CustomTextField(
-                  controller: _controller,
+                  controller: controller,
                   hintText: 'Date of birth',
                   suffixIcon: Icon(Icons.calendar_month),
                   keyboardType:
                       TextInputType
-                          .emailAddress, // Change to TextInputType.name
+                          .emailAddress, 
                 ),
                 SizedBox(height: 170.h),
                 ReusableButton(

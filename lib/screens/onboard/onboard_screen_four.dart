@@ -6,8 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:finance_app/screens/onboard/onboard.dart';
 
-
-
 class OnboardScreenFour extends StatelessWidget {
   const OnboardScreenFour({super.key});
 
@@ -59,10 +57,11 @@ class OnboardScreenFour extends StatelessWidget {
                         borderRadius: 4,
                         onTap: () {
                           showModalBottomSheet(
+                            showDragHandle: false,
                             context: context,
                             backgroundColor: Color(0XFF27282B),
                             isDismissible: true,
-                            enableDrag: false,
+                            enableDrag: true,
                             isScrollControlled: true,
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
@@ -71,52 +70,61 @@ class OnboardScreenFour extends StatelessWidget {
                               ),
                             ),
                             builder:
-                                (context) => Container(
-                                  margin: EdgeInsets.symmetric(
-                                    horizontal: 20,
-                                    vertical: 16,
+                                (context) => Padding(
+                                  padding: EdgeInsets.only(
+                                    bottom:
+                                        MediaQuery.of(
+                                          context,
+                                        ).viewInsets.bottom,
                                   ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Divider(
-                                        color: Color(0XFFD0D5E0),
-                                        indent: 145.w,
-                                        endIndent: 145.w,
-                                        thickness: 2,
+                                  child: SingleChildScrollView(
+                                    child: Container(
+                                      margin: EdgeInsets.symmetric(
+                                        horizontal: 20,
+                                        vertical: 16,
                                       ),
-                                      SizedBox(height: 32.h),
-                                      Text(
-                                        'Let’s Set up Your Account',
-                                        style: context.textTheme.headlineSmall!
-                                            .copyWith(
-                                              fontFamily: 'CircularStd',
-                                            ),
-                                      ),
-                                      SizedBox(height: 16.h),
-                                      Text(
-                                        'What country do you live in ?',
-                                        style: context.textTheme.bodyMedium!
-                                            .copyWith(
-                                              fontFamily: 'CircularStd',
-                                            ),
-                                      ),
-                                      SizedBox(height: 40.h),
-                                      ReusableButton(
-                                        color: Color(0XFF14151A),
-                                        height: 48.h,
-                                        width: double.infinity,
-                                        borderRadius: 4.h,
-                                        onTap: () {
-                                          showCountryPicker(
-                                            context: context,
-                                            countryListTheme:
-                                                CountryListThemeData(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Divider(
+                                            color: Color(0XFFD0D5E0),
+                                            indent: 145.w,
+                                            endIndent: 145.w,
+                                            thickness: 2,
+                                          ),
+                                          SizedBox(height: 32.h),
+                                          Text(
+                                            'Let’s Set up Your Account',
+                                            style: context
+                                                .textTheme
+                                                .headlineSmall!
+                                                .copyWith(
+                                                  fontFamily: 'CircularStd',
+                                                ),
+                                          ),
+                                          SizedBox(height: 16.h),
+                                          Text(
+                                            'What country do you live in ?',
+                                            style: context.textTheme.bodyMedium!
+                                                .copyWith(
+                                                  fontFamily: 'CircularStd',
+                                                ),
+                                          ),
+                                          SizedBox(height: 40.h),
+                                          ReusableButton(
+                                            color: Color(0XFF14151A),
+                                            height: 48.h,
+                                            width: double.infinity,
+                                            borderRadius: 4.h,
+                                            onTap: () {
+                                              showCountryPicker(
+                                                context: context,
+                                                countryListTheme: CountryListThemeData(
                                                   flagSize: 25,
                                                   backgroundColor: Color(
                                                     0XFF1F2023,
                                                   ),
-                                                  bottomSheetHeight: 500,
+                                                  bottomSheetHeight: 600,
                                                   textStyle: context
                                                       .textTheme
                                                       .bodyMedium!
@@ -134,7 +142,6 @@ class OnboardScreenFour extends StatelessWidget {
                                                               fontFamily:
                                                                   'Circular Std',
                                                             ),
-                                                        hintText: 'chima',
                                                         hintStyle: context
                                                             .textTheme
                                                             .bodyMedium!
@@ -145,70 +152,78 @@ class OnboardScreenFour extends StatelessWidget {
                                                       ),
                                                 ),
 
-                                            showPhoneCode: false,
-                                            onSelect: (Country country) {
-                                              log(
-                                                'Select country: ${country.displayName}',
+                                                showPhoneCode: false,
+                                                onSelect: (Country country) {
+                                                  log(
+                                                    'Select country: ${country.displayName}',
+                                                  );
+                                                },
                                               );
                                             },
-                                          );
-                                        },
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 20,
-                                            vertical: 12,
-                                          ),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                'Select Country',
-                                                style: context
-                                                    .textTheme
-                                                    .bodyMedium!
-                                                    .copyWith(
-                                                      fontFamily: 'CircularStd',
-                                                      color: Color(0XFF8791A7),
-                                                    ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                    horizontal: 20,
+                                                    vertical: 12,
+                                                  ),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    'Select Country',
+                                                    style: context
+                                                        .textTheme
+                                                        .bodyMedium!
+                                                        .copyWith(
+                                                          fontFamily:
+                                                              'CircularStd',
+                                                          color: Color(
+                                                            0XFF8791A7,
+                                                          ),
+                                                        ),
+                                                  ),
+                                                  Icon(
+                                                    Icons.arrow_drop_down,
+                                                    color: Color(0XFF8791A7),
+                                                  ),
+                                                ],
                                               ),
-                                              Icon(
-                                                Icons.arrow_drop_down,
-                                                color: Color(0XFF8791A7),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 24.h),
-                                      ReusableButton(
-                                        color: Color(0XFF4D84FF),
-                                        height: 55.h,
-                                        width: double.infinity,
-                                        borderRadius: 4.h,
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder:
-                                                  (context) => SignUpScreen()
                                             ),
-                                          );
-                                        },
-                                        child: Text(
-                                          'Continue',
-                                          style: context
-                                              .textTheme
-                                              .headlineSmall!
-                                              .copyWith(
-                                                fontFamily: 'CircularStd',
-                                              ),
-                                        ),
+                                          ),
+                                          SizedBox(height: 24.h),
+                                          ReusableButton(
+                                            color: Color(0XFF4D84FF),
+                                            height: 55.h,
+                                            width: double.infinity,
+                                            borderRadius: 4.h,
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (context) =>
+                                                          SignUpScreen(),
+                                                ),
+                                              );
+                                            },
+                                            child: Text(
+                                              'Continue',
+                                              style: context
+                                                  .textTheme
+                                                  .headlineSmall!
+                                                  .copyWith(
+                                                    fontFamily: 'CircularStd',
+                                                  ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 60.h),
+                                        ],
                                       ),
-                                      SizedBox(height: 60.h),
-                                    ],
+                                    ),
                                   ),
                                 ),
                           );
