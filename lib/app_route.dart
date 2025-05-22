@@ -20,7 +20,7 @@ class NavObserver extends NavigatorObserver {
 }
 
 final router = GoRouter(
-  initialLocation: '/onboardingWrapper',
+  initialLocation: '/',
   observers: [NavObserver()],
 
   routes: [
@@ -94,12 +94,11 @@ final router = GoRouter(
       builder: (context, state) => HomeScreen(),
       name: HomeScreen.id,
     ),
-        GoRoute(
+    GoRoute(
       path: '/transactionScreen',
       builder: (context, state) => TransactionScreen(),
       name: TransactionScreen.id,
-      ),
-    
+    ),
   ],
 );
 

@@ -8,80 +8,169 @@ class CustomDialog {
     required Widget content,
     required String imagePath,
     required String primaryButtonText,
-    required VoidCallback onPrimaryPressed,
     required String secondaryButtonText,
-    required VoidCallback onSecondaryPressed,
-    required VoidCallback onCancelPressed,
     required Color buttonColor,
   }) {
     showDialog(
       context: context,
       barrierDismissible: true,
       builder:
-          (_) => Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Color(0XFFFFFFFF),
-                ),
-                margin:  EdgeInsets.symmetric(horizontal: 20.h),
-                padding: EdgeInsets.fromLTRB(20.h,30.h,20.h,21.h
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.asset(imagePath),
-                    SizedBox(height: 20.h),
-                    content,
-                    SizedBox(height: 30.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          (_) => Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 15.w),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Color(0XFFFFFFFF),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 20.w,
+                      vertical: 25.h,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        TextButton(
-                          onPressed: onSecondaryPressed,
-                          child: Text(
-                            secondaryButtonText,
-                            style: context.textTheme.bodyLarge!.copyWith(
-                              fontFamily: 'CircularStd',
-                              color: Color(0XFF4F5877),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: onCancelPressed,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              color: buttonColor,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                        Image.asset(imagePath),
+                        SizedBox(height: 24.h),
+                        content,
+                        SizedBox(height: 30),
+                        Row(
+                          children: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
                               child: Text(
                                 primaryButtonText,
                                 style: context.textTheme.bodyLarge!.copyWith(
                                   fontFamily: 'CircularStd',
+                                  color: Color(0XFF4F5877),
                                 ),
                               ),
                             ),
-                          ),
+                            Spacer(),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  color: buttonColor,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    secondaryButtonText,
+                                    style: context.textTheme.bodyLarge!
+                                        .copyWith(fontFamily: 'CircularStd'),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 30),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Icon(Icons.cancel, color: Colors.white, size: 32),
-              ),
-            ],
+                SizedBox(height: 45.h),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(Icons.cancel, color: Colors.white, size: 32),
+                ),
+              ],
+            ),
           ),
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// SingleChildScrollView(
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               mainAxisSize: MainAxisSize.min,
+//               children: [
+//                 Container(
+//                   decoration: BoxDecoration(
+//                     borderRadius: BorderRadius.circular(8),
+//                     color: Color(0XFFFFFFFF),
+//                   ),
+//                   margin: EdgeInsets.symmetric(horizontal: 20.h),
+//                   // padding: EdgeInsets.fromLTRB(20.h,30.h,20.h,21.h
+//                   // ),
+//                   child: Column(
+//                     mainAxisAlignment: MainAxisAlignment.center,
+//                     mainAxisSize: MainAxisSize.min,
+//                     children: [
+//                       Image.asset(imagePath),
+//                       SizedBox(height: 20.h),
+//                       content,
+//                       SizedBox(height: 30.h),
+//                       Row(
+//                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                         children: [
+//                           TextButton(
+//                             onPressed: onSecondaryPressed,
+//                             child: Text(
+//                               secondaryButtonText,
+//                               style: context.textTheme.bodyLarge!.copyWith(
+//                                 fontFamily: 'CircularStd',
+//                                 color: Color(0XFF4F5877),
+//                               ),
+//                             ),
+//                           ),
+//                           InkWell(
+//                             onTap: () {
+//                               Navigator.pop(context);
+//                             },
+//                             child: Container(
+//                               decoration: BoxDecoration(
+//                                 borderRadius: BorderRadius.circular(4),
+//                                 color: buttonColor,
+//                               ),
+//                               child: Padding(
+//                                 padding: const EdgeInsets.all(8.0),
+//                                 child: Text(
+//                                   primaryButtonText,
+//                                   style: context.textTheme.bodyLarge!.copyWith(
+//                                     fontFamily: 'CircularStd',
+//                                   ),
+//                                 ),
+//                               ),
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//                 SizedBox(height: 30),
+//                 GestureDetector(
+//                   onTap: () {
+//                     Navigator.pop(context);
+//                   },
+//                   child: Icon(Icons.cancel, color: Colors.white, size: 32),
+//                 ),
+//               ],
+//             ),
+//           ),

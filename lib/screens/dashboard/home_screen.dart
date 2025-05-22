@@ -1,11 +1,13 @@
 import 'package:finance_app/components/components.dart';
 import 'package:finance_app/extension/context.extension.dart';
+import 'package:finance_app/screens/dashboard/transactions/transaction_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:finance_app/screens/dashboard/home_screen_widgets.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends HookWidget {
   const HomeScreen({super.key, this.initialIndex = 0});
@@ -37,10 +39,7 @@ class HomeScreen extends HookWidget {
                     CustomDialog.show(
                       imagePath: 'assets/images/jpegs/notification_icon.png',
                       context: context,
-                      onSecondaryPressed: () => Navigator.pop(context),
-                      onCancelPressed: () => Navigator.pop(context),
                       primaryButtonText: 'Not Now',
-                      onPrimaryPressed: () {},
                       buttonColor: Color(0XFf4D84FF),
                       secondaryButtonText: 'Turn on',
                       content: Column(
@@ -52,7 +51,7 @@ class HomeScreen extends HookWidget {
                               color: Color(0XFF001140),
                             ),
                           ),
-                          SizedBox(height: 10.h,),
+                          SizedBox(height: 10.h),
                           Text(
                             textAlign: TextAlign.center,
                             'You will get updates when important\nevents happen',
@@ -147,7 +146,7 @@ class HomeScreen extends HookWidget {
                             ),
                             SizedBox(height: 4.h),
                             Text(
-                              isVisible.value ? '\$0.00' : '****',
+                              isVisible.value ? '\$525 000.00 ' : '****',
                               style: context.textTheme.displayMedium!.copyWith(
                                 fontFamily: 'CircularStd',
                                 color: Color(0XFF001140),
@@ -382,6 +381,7 @@ class HomeScreen extends HookWidget {
                   BottomNavButton(
                     buttonName: 'OverView',
                     buttonIcon: 'assets/images/svgs/overview.svg',
+                    position: 0,
                     currentPosition: currentPosition.value,
                     onPressed: () {
                       if (0 != currentPosition.value) {
@@ -390,6 +390,7 @@ class HomeScreen extends HookWidget {
                       }
                     },
                   ),
+                  if (context.isTablet) SizedBox(width: 80.w),
                   BottomNavButton(
                     buttonName: 'Trade',
                     buttonIcon: 'assets/images/svgs/trade.svg',
@@ -402,6 +403,7 @@ class HomeScreen extends HookWidget {
                       }
                     },
                   ),
+                  if (context.isTablet) SizedBox(width: 80.w),
                   BottomNavButton(
                     buttonName: 'Transactions',
                     buttonIcon: 'assets/images/svgs/transaction.svg',
@@ -411,9 +413,11 @@ class HomeScreen extends HookWidget {
                       if (2 != currentPosition.value) {
                         currentPosition.value = 2;
                         HapticFeedback.lightImpact();
+                        context.pushNamed(TransactionScreen.id);
                       }
                     },
                   ),
+                  if (context.isTablet) SizedBox(width: 80.w),
                   BottomNavButton(
                     buttonName: 'Wallet',
                     buttonIcon: 'assets/images/svgs/wallet.svg',
@@ -426,6 +430,7 @@ class HomeScreen extends HookWidget {
                       }
                     },
                   ),
+                  if (context.isTablet) SizedBox(width: 80.w),
                   BottomNavButton(
                     buttonName: 'More',
                     buttonIcon: 'assets/images/svgs/more.svg',

@@ -10,12 +10,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize:
-          context.isTablet ? const Size(768, 1280) : const Size(375, 812),
+      context.isTablet ? const Size(768, 1280) : const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
       builder:
