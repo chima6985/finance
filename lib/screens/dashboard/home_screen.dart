@@ -371,7 +371,7 @@ class HomeScreen extends HookWidget {
           Divider(color: Color(0XFF4F5877).withAlpha(50)),
           Padding(
             padding: EdgeInsets.fromLTRB(20.w, 8, 20.w, context.btmPadding),
-            child: Container(
+            child: SizedBox(
               child: Row(
                 mainAxisAlignment:
                     context.isTablet
@@ -387,6 +387,7 @@ class HomeScreen extends HookWidget {
                       if (0 != currentPosition.value) {
                         currentPosition.value = 0;
                         HapticFeedback.lightImpact();
+                        context.pushNamed(HomeScreen.id);
                       }
                     },
                   ),

@@ -20,7 +20,7 @@ class NavObserver extends NavigatorObserver {
 }
 
 final router = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/homeScreen',
   observers: [NavObserver()],
 
   routes: [

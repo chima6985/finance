@@ -1,15 +1,16 @@
 import 'package:finance_app/components/components.dart';
 import 'package:finance_app/components/transaction_dialogue.dart';
 import 'package:finance_app/extension/context.extension.dart';
-import 'package:finance_app/screens/dashboard/transactions/transaction.dart';
+import 'package:finance_app/screens/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class TransactionScreen extends HookWidget {
-  const TransactionScreen({super.key, this.initialIndex = 0});
+  const TransactionScreen({super.key, this.initialIndex = 2});
   static const String id = 'transactionScreen';
   final int initialIndex;
 
@@ -136,7 +137,7 @@ class TransactionScreen extends HookWidget {
                     right: 20.w,
                     left: 20.w,
                   ),
-                  child: Container(
+                  child: SizedBox(
                     child: Row(
                       mainAxisAlignment:
                           context.isTablet
@@ -151,6 +152,7 @@ class TransactionScreen extends HookWidget {
                             if (0 != currentPosition.value) {
                               currentPosition.value = 0;
                               HapticFeedback.lightImpact();
+                              context.pushNamed(HomeScreen.id);
                             }
                           },
                         ),
@@ -175,10 +177,7 @@ class TransactionScreen extends HookWidget {
                             if (2 != currentPosition.value) {
                               currentPosition.value = 2;
                               HapticFeedback.lightImpact();
-                              Navigator.pushNamed(
-                                context,
-                                TransactionScreen.id,
-                              );
+                              context.pushNamed(TransactionScreen.id);
                             }
                           },
                         ),
