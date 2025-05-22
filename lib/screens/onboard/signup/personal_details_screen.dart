@@ -15,18 +15,19 @@ class AboutYouScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final controller = useTextEditingController();
-    final selcectedDate = useState<DateTime>();
+    final selcectedDate = useState<DateTime?>(null);
 
     Future<void> pickDate(BuildContext context) async {
       final date = await showDatePicker(
-        context: context, 
+        context: context,
         initialDate: DateTime.now(),
-        firstDate: DateTime(2000), 
-        lastDate: DateTime(2024),);
-            if (date != null){
-      selcectedDate.value = date;
-      controller.text = DateFormat('yyy-MM-dd').format(date);
-    }
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2024),
+      );
+      if (date != null) {
+        selcectedDate.value = date;
+        controller.text = DateFormat('yyy-MM-dd').format(date);
+      }
     }
 
     return Scaffold(
@@ -59,36 +60,33 @@ class AboutYouScreen extends HookWidget {
                 ),
                 SizedBox(height: 32.h),
                 CustomTextField(
+                  readOnly: false,
                   controller: controller,
                   hintText: 'First Name',
-                  keyboardType:
-                      TextInputType
-                          .name, 
+                  keyboardType: TextInputType.name,
                 ),
                 SizedBox(height: 24.h),
                 CustomTextField(
+                  readOnly: false,
                   controller: controller,
                   hintText: 'Last Name',
-                  keyboardType:
-                      TextInputType
-                          .name, 
+                  keyboardType: TextInputType.name,
                 ),
                 SizedBox(height: 24.h),
                 CustomTextField(
+                  readOnly: false,
                   controller: controller,
                   hintText: 'Phone Number',
-                  keyboardType:
-                      TextInputType
-                          .number, 
+                  keyboardType: TextInputType.number,
                 ),
                 SizedBox(height: 24.h),
                 CustomTextField(
+                  readOnly: true,
+                  onTap: () => pickDate(context),
+                
                   controller: controller,
                   hintText: 'Date of birth',
                   suffixIcon: Icon(Icons.calendar_month),
-                  keyboardType:
-                      TextInputType
-                          .emailAddress, 
                 ),
                 SizedBox(height: 170.h),
                 ReusableButton(

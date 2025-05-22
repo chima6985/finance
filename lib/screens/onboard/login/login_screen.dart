@@ -48,6 +48,7 @@ class LoginScreen extends HookWidget {
                   height: 54.h,
                   width: double.infinity,
                   child: CustomTextField(
+                    readOnly: false,
                     controller: emailController,
                     hintText: 'Enter email address',
                     keyboardType: TextInputType.emailAddress,
@@ -58,6 +59,7 @@ class LoginScreen extends HookWidget {
                   height: 54.h,
                   width: double.infinity,
                   child: CustomTextField(
+                    readOnly: false,
                     controller: passwordController,
                     hintText: 'Enter password',
                     obscureText: obscureText.value,
