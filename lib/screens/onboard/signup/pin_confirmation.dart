@@ -20,7 +20,10 @@ class PinConfirmationScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: context.topPadding),
-                CustomBackButton(avatarColor: Color(0XFF27282B)),
+                CustomBackButton(
+                  avatarColor: Color(0XFF27282B),
+                  arrowColor: Color(0XFF8791A7),
+                ),
                 SizedBox(height: 25.h),
                 Text(
                   'Confirm 4-digit PIN',

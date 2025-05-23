@@ -40,7 +40,10 @@ class AboutYouScreen extends HookWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: context.topPadding),
-                CustomBackButton(avatarColor: Color(0XFF27282B)),
+                CustomBackButton(
+                  avatarColor: Color(0XFF27282B),
+                  arrowColor: Color(0XFF8791A7),
+                ),
                 SizedBox(height: 25.h),
                 Text(
                   'Tell us more about you',
@@ -61,12 +64,16 @@ class AboutYouScreen extends HookWidget {
                 SizedBox(height: 32.h),
                 CustomTextField(
                   controller: firstNamecontroller,
+                  fillColor: Color(0XFF14151A),
+                  textColor: Color(0XFF8791A7),
                   hintText: 'First Name',
                   keyboardType:
                       TextInputType.name, // Change to TextInputType.name
                 ),
                 SizedBox(height: 24.h),
                 CustomTextField(
+                  fillColor: Color(0XFF14151A),
+                  textColor: Color(0XFF8791A7),
                   controller: lastNameController,
                   hintText: 'Last Name',
                   keyboardType:
@@ -74,12 +81,16 @@ class AboutYouScreen extends HookWidget {
                 ),
                 SizedBox(height: 24.h),
                 CustomTextField(
+                  fillColor: Color(0XFF14151A),
+                  textColor: Color(0XFF8791A7),
                   controller: phoneController,
                   hintText: 'Phone Number',
                   keyboardType: TextInputType.number,
                 ),
                 SizedBox(height: 24.h),
                 CustomTextField(
+                  fillColor: Color(0XFF14151A),
+                  textColor: Color(0XFF8791A7),
                   onTap: showDatepicker,
                   controller: dobController,
                   readOnly: true,

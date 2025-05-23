@@ -2,6 +2,7 @@ import 'package:finance_app/components/components.dart';
 import 'package:finance_app/components/transaction_dialogue.dart';
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:finance_app/screens/dashboard/dashboard.dart';
+import 'package:finance_app/screens/dashboard/filter_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -36,14 +37,14 @@ class TransactionScreen extends HookWidget {
                           TransactionDialogue.show(
                             context: context,
                             title: 'Transaction Summary',
-                            remark:'Purchased 100 Fluidcoin Token',
+                            remark: 'Purchased 100 Fluidcoin Token',
                             imagePath: 'assets/images/jpegs/flcn.png',
-                            primaryButtonText:'Close',
-                            statusText:'Completed',
-                            containerColor: Color(0XFF4D84FF) ,
-                            buttonTextColor:Color(0XFFFFFFFF),
-                            textcolor: Color(0XFF27AE60) ,
-                            secondaryButtonText:'Share',
+                            primaryButtonText: 'Close',
+                            statusText: 'Completed',
+                            containerColor: Color(0XFF4D84FF),
+                            buttonTextColor: Color(0XFFFFFFFF),
+                            textcolor: Color(0XFF27AE60),
+                            secondaryButtonText: 'Share',
                           );
                         },
                         child: Text(
@@ -57,7 +58,9 @@ class TransactionScreen extends HookWidget {
                       ),
                       Spacer(),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          context.pushNamed(FilterScreen.id);
+                        },
                         child: SvgPicture.asset(
                           'assets/images/svgs/filters.svg',
                         ),

@@ -19,7 +19,10 @@ class IdUploadScreen extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: context.topPadding),
-                CustomBackButton(avatarColor: Color(0XFF27282B)),
+                CustomBackButton(
+                  avatarColor: Color(0XFF27282B),
+                  arrowColor: Color(0XFF8791A7),
+                ),
                 SizedBox(height: 58.h),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,

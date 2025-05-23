@@ -14,47 +14,105 @@ class FilterScreen extends StatefulWidget {
 
 class _FilterScreenState extends State<FilterScreen> {
   bool? isChecked = false;
+  List<String> options = ['Bought', 'Sold', 'Withdrawal', 'Deposits'];
+  List<String> icons = [
+    'assets/images/jpegs/in.png',
+    'assets/images/jpegs/out.png',
+    'assets/images/jpegs/withdrawal.png',
+    'assets/images/jpegs/deposits.png',
+  ];
+  List<bool> checked = [false, false, false, false];
+  final TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(color: Color(0XFFFFFFFF)),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0.w),
-          child: Column(
-            children: [
-              SizedBox(height: context.topPadding),
-              Row(
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Container(
+          decoration: BoxDecoration(color: Color(0XFFFFFFFF)),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.0.w),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomBackButton(avatarColor: Color(0XFFD8EFFF)),
-                  Spacer(),
+                  SizedBox(height: context.topPadding),
+                  Row(
+                    children: [
+                      CustomBackButton(avatarColor: Color(0XFFD8EFFF)),
+                      Spacer(),
+                      Text(
+                        'Filter Transactions',
+                        style: context.textTheme.bodyLarge!.copyWith(
+                          color: Color(0XFF001140),
+                        ),
+                      ),
+                      Spacer(),
+                      SvgPicture.asset('assets/images/svgs/refresh.svg'),
+                    ],
+                  ),
+                  SizedBox(height: 40.h),
+                  Column(
+                    children: List.generate(options.length, (index) {
+                      return CheckboxListTile(
+                        value: checked[index],
+                        onChanged: (isChecked) {
+                          setState(() {
+                            checked[index] = isChecked!;
+                          });
+                        },
+                        activeColor: Color(0XFF4D84FF),
+                        title: Text(
+                          options[index],
+                          style: context.textTheme.bodyMedium!.copyWith(
+                            color: Color(0XFF001140),
+                          ),
+                        ),
+                        secondary: Image.asset(
+                          icons[index],
+                          width: 24,
+                          height: 24,
+                        ),
+                        contentPadding: EdgeInsets.zero,
+                      );
+                    }),
+                  ),
+                  SizedBox(height: 25.h),
+                  Divider(color: Color(0XFFF0F4FD), thickness: 2),
+                  SizedBox(height: 25.h),
                   Text(
-                    'Filter Transactions',
-                    style: context.textTheme.bodyLarge!.copyWith(
+                    'By Date',
+                    style: context.textTheme.headlineSmall!.copyWith(
                       color: Color(0XFF001140),
                     ),
                   ),
-                  Spacer(),
-                  SvgPicture.asset('assets/images/svgs/refresh.svg'),
+                  SizedBox(height: 24.h),
+                  CustomTextField(
+                    textColor: Colors.black,
+                    controller: controller,
+                    fillColor: Color(0XFFFFFFFF),
+                    hintText: 'Start Date',
+                    hintStyle: context.textTheme.bodyMedium!.copyWith(
+                      color: Color(0XFFA3A8B3),
+                    ),
+                    suffixIcon: Icon(Icons.calendar_month_sharp),
+                  ),
+                  SizedBox(height: 24.h),
+                  CustomTextField(
+                    textColor: Colors.black,
+                    controller: controller,
+                    fillColor: Color(0XFFFFFFFF),
+                    hintText: 'End Date',
+                    hintStyle: context.textTheme.bodyMedium!.copyWith(
+                      color: Color(0XFFA3A8B3),
+                    ),
+                    suffixIcon: Icon(Icons.calendar_month_sharp),
+                  ),
                 ],
               ),
-              SizedBox(height: 40.h),
-              CheckboxListTile(
-                value: isChecked,
-                onChanged: (bool? newValue) {
-                  setState(() {
-                    isChecked = newValue;
-                  });
-                },
-                title: Text(
-                  'Bought',
-                  style: context.textTheme.bodyMedium!.copyWith(
-                    color: Color(0XFF001140),
-                  ),
-                ),
-                secondary: Image.asset('assets/images/jpegs/in.png'),
-              ),
-            ],
+            ),
           ),
         ),
       ),

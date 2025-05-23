@@ -4,13 +4,16 @@ import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 
 class CustomBackButton extends StatelessWidget {
-  const CustomBackButton({super.key,
-   this.onTap, 
-   this.avatarColor
-   });
-   
+  const CustomBackButton({
+    super.key,
+    this.onTap,
+    this.avatarColor,
+    this.arrowColor,
+  });
+
   final VoidCallback? onTap;
   final Color? avatarColor;
+  final Color? arrowColor;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +28,8 @@ class CustomBackButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: CircleAvatar(
             radius: 13.sp,
-            backgroundColor: avatarColor ,
-            child: Icon(Iconsax.arrow_left, color: Colors.black),
+            backgroundColor: avatarColor,
+            child: Icon(Iconsax.arrow_left, color: arrowColor),
           ),
         ),
       ),

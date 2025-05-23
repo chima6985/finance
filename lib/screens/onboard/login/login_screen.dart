@@ -49,6 +49,8 @@ class LoginScreen extends HookWidget {
                   width: double.infinity,
                   child: CustomTextField(
                     controller: emailController,
+                    fillColor: Color(0XFF14151A),
+                    textColor: Color(0XFF8791A7),
                     hintText: 'Enter email address',
                     keyboardType: TextInputType.emailAddress,
                   ),
@@ -58,6 +60,8 @@ class LoginScreen extends HookWidget {
                   height: 54.h,
                   width: double.infinity,
                   child: CustomTextField(
+                    fillColor: Color(0XFF14151A),
+                    textColor: Color(0XFF8791A7),
                     controller: passwordController,
                     hintText: 'Enter password',
                     obscureText: obscureText.value,

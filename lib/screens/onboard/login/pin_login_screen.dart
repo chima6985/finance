@@ -24,7 +24,10 @@ class PinLoginScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomBackButton(avatarColor: Color(0XFF27282B)),
+                    CustomBackButton(
+                      avatarColor: Color(0XFF27282B),
+                      arrowColor: Color(0XFF8791A7),
+                    ),
                     Container(
                       decoration: BoxDecoration(color: Color(0XFF14151A)),
                       child: Padding(

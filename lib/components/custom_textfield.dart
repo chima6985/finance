@@ -9,6 +9,9 @@ class CustomTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final VoidCallback? onTap;
   final bool readOnly;
+  final TextStyle? hintStyle;
+  final Color? fillColor;
+  final Color? textColor;
 
   const CustomTextField({
     super.key,
@@ -19,6 +22,8 @@ class CustomTextField extends StatelessWidget {
     this.suffixIcon,
     this.onTap,
     this.readOnly = false,
+    this.hintStyle,
+    this.fillColor, this.textColor,
   });
 
   @override
@@ -32,16 +37,12 @@ class CustomTextField extends StatelessWidget {
         readOnly: readOnly,
         keyboardType: keyboardType,
         obscureText: obscureText,
-        style: TextStyle(color: Colors.white, fontSize: 16.sp),
+        style: TextStyle(color: textColor, fontSize: 16.sp),
         decoration: InputDecoration(
           filled: true,
-          fillColor: Color(0XFF14151A),
+          fillColor: fillColor,
           hintText: hintText,
-          hintStyle: TextStyle(
-            fontFamily: 'CircularStd',
-            color: Color(0XFF8791A7),
-            fontSize: 16.sp,
-          ),
+          hintStyle: hintStyle,
           suffixIcon: suffixIcon,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
@@ -60,3 +61,5 @@ class CustomTextField extends StatelessWidget {
     );
   }
 }
+
+

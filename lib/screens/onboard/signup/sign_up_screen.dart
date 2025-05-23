@@ -6,8 +6,6 @@ import 'package:go_router/go_router.dart';
 import 'package:finance_app/screens/onboard/onboard.dart';
 import 'package:finance_app/components/components.dart';
 
-
-
 class SignUpScreen extends HookWidget {
   const SignUpScreen({super.key});
   static const String id = 'signUpScreen';
@@ -52,7 +50,10 @@ class SignUpScreen extends HookWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: context.topPadding),
-                CustomBackButton(avatarColor: Color(0XFF27282B)),
+                CustomBackButton(
+                  avatarColor: Color(0XFF27282B),
+                  arrowColor: Color(0XFF8791A7),
+                ),
                 SizedBox(height: 25.h),
                 Text(
                   'Enter your email and password',
@@ -77,6 +78,8 @@ class SignUpScreen extends HookWidget {
                   height: 54.h,
                   width: double.infinity,
                   child: CustomTextField(
+                    fillColor: Color(0XFF14151A),
+                    textColor: Color(0XFF8791A7),
                     controller: emailController,
                     hintText: 'Enter email address',
                     keyboardType: TextInputType.emailAddress,
@@ -87,6 +90,8 @@ class SignUpScreen extends HookWidget {
                   height: 54.h,
                   width: double.infinity,
                   child: CustomTextField(
+                    fillColor: Color(0XFF14151A),
+                    textColor: Color(0XFF8791A7),
                     controller: passwordController,
                     hintText: 'Enter password',
                     obscureText: obscureText.value,
