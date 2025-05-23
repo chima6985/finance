@@ -26,7 +26,7 @@ class HomeScreen extends HookWidget {
         children: [
           SizedBox(height: context.topPadding),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.symmetric(horizontal: 20.0.h),
             child: Row(
               children: [
                 CircleAvatar(
@@ -435,7 +435,7 @@ class HomeScreen extends HookWidget {
           ),
           SizedBox(height: 40.h),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+            padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 15.h),
             child: Text(
               'New-In',
               style: context.textTheme.headlineSmall!.copyWith(
@@ -444,11 +444,11 @@ class HomeScreen extends HookWidget {
               ),
             ),
           ),
-          SizedBox(height: 8.h),
+          // SizedBox(height: 8.h),
           Divider(color: Color(0XFF4F5877).withAlpha(50)),
-          Padding(
-            padding: EdgeInsets.fromLTRB(20.w, 8, 20.w, context.btmPadding),
-            child: SizedBox(
+          SizedBox(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(15.w, 8.h, 15.w, context.btmPadding),
               child: Row(
                 mainAxisAlignment:
                     context.isTablet
