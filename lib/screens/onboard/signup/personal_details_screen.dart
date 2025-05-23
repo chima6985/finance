@@ -5,7 +5,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:finance_app/components/components.dart';
-import 'package:intl/intl.dart';
 
 class AboutYouScreen extends HookWidget {
   const AboutYouScreen({super.key});
@@ -14,19 +13,20 @@ class AboutYouScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = useTextEditingController();
-    final selcectedDate = useState<DateTime?>(null);
+    final firstNamecontroller = useTextEditingController();
+    final lastNameController = useTextEditingController();
+    final phoneController = useTextEditingController();
+    final dobController = useTextEditingController();
 
-    Future<void> pickDate(BuildContext context) async {
-      final date = await showDatePicker(
+    void showDatepicker() async {
+      final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2024),
+        firstDate: DateTime(1990),
+        lastDate: DateTime.now(),
       );
-      if (date != null) {
-        selcectedDate.value = date;
-        controller.text = DateFormat('yyy-MM-dd').format(date);
+      if (picked != null) {
+        dobController.text = '${picked.day}/${picked.month}/${picked.year}';
       }
     }
 
@@ -60,33 +60,32 @@ class AboutYouScreen extends HookWidget {
                 ),
                 SizedBox(height: 32.h),
                 CustomTextField(
-                  readOnly: false,
-                  controller: controller,
+                  controller: firstNamecontroller,
                   hintText: 'First Name',
-                  keyboardType: TextInputType.name,
+                  keyboardType:
+                      TextInputType.name, // Change to TextInputType.name
                 ),
                 SizedBox(height: 24.h),
                 CustomTextField(
-                  readOnly: false,
-                  controller: controller,
+                  controller: lastNameController,
                   hintText: 'Last Name',
-                  keyboardType: TextInputType.name,
+                  keyboardType:
+                      TextInputType.name, // Change to TextInputType.name
                 ),
                 SizedBox(height: 24.h),
                 CustomTextField(
-                  readOnly: false,
-                  controller: controller,
+                  controller: phoneController,
                   hintText: 'Phone Number',
                   keyboardType: TextInputType.number,
                 ),
                 SizedBox(height: 24.h),
                 CustomTextField(
+                  onTap: showDatepicker,
+                  controller: dobController,
                   readOnly: true,
-                  onTap: () => pickDate(context),
-                
-                  controller: controller,
                   hintText: 'Date of birth',
                   suffixIcon: Icon(Icons.calendar_month),
+                  keyboardType: TextInputType.none,
                 ),
                 SizedBox(height: 170.h),
                 ReusableButton(

@@ -133,7 +133,7 @@ class TransactionScreen extends HookWidget {
                 Divider(color: Color(0XFF4F5877).withAlpha(50)),
                 Padding(
                   padding: EdgeInsets.only(
-                    bottom: context.btmPadding,
+                    bottom: context.btmPadding + 10,
                     right: 20.w,
                     left: 20.w,
                   ),

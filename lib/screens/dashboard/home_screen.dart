@@ -235,58 +235,135 @@ class HomeScreen extends HookWidget {
           SizedBox(height: 24.h),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color(0XFFFCEDE9),
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20.0,
-                      vertical: 12,
+            child: InkWell(
+              onTap: () {
+                showModalBottomSheet(
+                  showDragHandle: false,
+                  context: context,
+                  backgroundColor: Color(0XFFFFFFFF),
+                  isDismissible: true,
+                  enableDrag: true,
+                  isScrollControlled: true,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(24),
+                      topRight: Radius.circular(24),
                     ),
-                    child: Row(
-                      children: [
-                        Image.asset('assets/images/jpegs/alert.png'),
-                        SizedBox(width: 8.w),
-                        Text(
-                          'Verify your information',
-                          style: context.textTheme.titleLarge!.copyWith(
-                            fontFamily: 'CircularStd',
-                            color: Color(0XFF693221),
+                  ),
+                  builder:
+                      (context) => Padding(
+                        padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom,
+                        ),
+                        child: SingleChildScrollView(
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 16,
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Divider(
+                                  color: Color(0XFFD0D5E0),
+                                  indent: 145.w,
+                                  endIndent: 145.w,
+                                  thickness: 2,
+                                ),
+                                SizedBox(height: 35.h),
+                                Image.asset('assets/images/jpegs/download.png'),
+                                SizedBox(height: 24.h),
+                                Text(
+                                  'New version available!',
+                                  style: context.textTheme.headlineSmall!
+                                      .copyWith(
+                                        fontFamily: 'CircularStd',
+                                        color: Color(0XFF001140),
+                                      ),
+                                ),
+                                SizedBox(height: 16.h),
+                                Text(
+                                  textAlign: TextAlign.center,
+                                  'There’s a new version of GetEquity available.\nUpdate your app on the App Store to get\nthe best experience',
+                                  style: context.textTheme.bodyMedium!.copyWith(
+                                    fontFamily: 'CircularStd',
+                                    color: Color(0XFF001140),
+                                  ),
+                                ),
+                                SizedBox(height: 24.h),
+                                ReusableButton(
+                                  color: Color(0XFF4D84FF),
+                                  height: 55.h,
+                                  width: double.infinity,
+                                  borderRadius: 4.h,
+                                  onTap: () {},
+                                  child: Text(
+                                    'Update GetEquity',
+                                    style: context.textTheme.headlineSmall!
+                                        .copyWith(fontFamily: 'CircularStd'),
+                                  ),
+                                ),
+                                SizedBox(height: context.btmPadding),
+                              ],
+                            ),
                           ),
                         ),
-                        Spacer(),
-                        Image.asset('assets/images/jpegs/shield.png'),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 12.h),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Divider(
-                      thickness: 2,
-                      color: Colors.white,
-                      height: 2,
-                    ),
-                  ),
-                  SizedBox(height: 14.h),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20.0,
-                      vertical: 15,
-                    ),
-                    child: Text(
-                      'Please complete your verification process in order to start trading',
-                      style: context.textTheme.bodyMedium!.copyWith(
-                        fontFamily: 'CircularStd',
-                        color: Color(0XFF693221),
+                      ),
+                );
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0XFFFCEDE9),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0,
+                        vertical: 12,
+                      ),
+                      child: Row(
+                        children: [
+                          Image.asset('assets/images/jpegs/alert.png'),
+                          SizedBox(width: 8.w),
+                          Text(
+                            'Verify your information',
+                            style: context.textTheme.titleLarge!.copyWith(
+                              fontFamily: 'CircularStd',
+                              color: Color(0XFF693221),
+                            ),
+                          ),
+                          Spacer(),
+                          Image.asset('assets/images/jpegs/shield.png'),
+                        ],
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 12.h),
+                    SizedBox(
+                      width: double.infinity,
+                      child: Divider(
+                        thickness: 2,
+                        color: Colors.white,
+                        height: 2,
+                      ),
+                    ),
+                    SizedBox(height: 14.h),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0,
+                        vertical: 15,
+                      ),
+                      child: Text(
+                        'Please complete your verification process in order to start trading',
+                        style: context.textTheme.bodyMedium!.copyWith(
+                          fontFamily: 'CircularStd',
+                          color: Color(0XFF693221),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

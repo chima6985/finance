@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               fontFamily: 'CircularStd',
-            ).copyWith(textTheme: _lightTextTheme, brightness: Brightness.dark),
+            ).copyWith(textTheme: _lightTextTheme),
             routerConfig: router,
           ),
     );

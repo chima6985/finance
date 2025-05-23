@@ -59,7 +59,7 @@ class OnboardScreenFour extends StatelessWidget {
                           showModalBottomSheet(
                             showDragHandle: false,
                             context: context,
-                            backgroundColor: Color(0XFF27282B),
+                            backgroundColor: Color(0XFFFFFFFF),
                             isDismissible: true,
                             enableDrag: true,
                             isScrollControlled: true,
@@ -220,7 +220,7 @@ class OnboardScreenFour extends StatelessWidget {
                                                   ),
                                             ),
                                           ),
-                                          SizedBox(height: 60.h),
+                                          SizedBox(height: context.btmPadding),
                                         ],
                                       ),
                                     ),
