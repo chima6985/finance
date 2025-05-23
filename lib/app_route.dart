@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:finance_app/screens/dashboard/dashboard.dart';
+import 'package:finance_app/screens/dashboard/filter_screen.dart';
 import 'package:finance_app/screens/mono_screen.dart';
 import 'package:finance_app/screens/mono_success_screen.dart';
 import 'package:finance_app/screens/onboard/onboard.dart';
@@ -20,7 +21,7 @@ class NavObserver extends NavigatorObserver {
 }
 
 final router = GoRouter(
-  initialLocation: '/homeScreen',
+  initialLocation: '/filterScreeen',
   observers: [NavObserver()],
 
   routes: [
@@ -99,6 +100,11 @@ final router = GoRouter(
       builder: (context, state) => TransactionScreen(),
       name: TransactionScreen.id,
     ),
+        GoRoute(
+      path: '/filterScreeen',
+      builder: (context, state) => FilterScreen() ,
+      name: FilterScreen.id
+      ),
   ],
 );
 

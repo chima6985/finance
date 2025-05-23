@@ -62,7 +62,7 @@ class TransactionTiles extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 24.h),
+                  SizedBox(height: 15.h),
                   if (showDivider)
                     Divider(height: 1, thickness: 2, color: Color(0xFFEEEFF3)),
                 ],

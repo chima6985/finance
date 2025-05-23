@@ -33,7 +33,18 @@ class TransactionScreen extends HookWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          TransactionDialogue();
+                          TransactionDialogue.show(
+                            context: context,
+                            title: 'Transaction Summary',
+                            remark:'Purchased 100 Fluidcoin Token',
+                            imagePath: 'assets/images/jpegs/flcn.png',
+                            primaryButtonText:'Close',
+                            statusText:'Completed',
+                            containerColor: Color(0XFF4D84FF) ,
+                            buttonTextColor:Color(0XFFFFFFFF),
+                            textcolor: Color(0XFF27AE60) ,
+                            secondaryButtonText:'Share',
+                          );
                         },
                         child: Text(
                           'Transactions',
@@ -136,6 +147,7 @@ class TransactionScreen extends HookWidget {
                     bottom: context.btmPadding + 10,
                     right: 20.w,
                     left: 20.w,
+                    top: 8,
                   ),
                   child: SizedBox(
                     child: Row(

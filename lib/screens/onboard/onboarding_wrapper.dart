@@ -35,7 +35,7 @@ class _OnboardingWrapperState extends State<OnboardingWrapper> {
         children: [
           PageView(
             scrollDirection: Axis.vertical,
-            physics: const ClampingScrollPhysics(),
+            physics: BouncingScrollPhysics(),
             controller: _pageController,
             onPageChanged: (index) {
               setState(() => _currentPage = index);

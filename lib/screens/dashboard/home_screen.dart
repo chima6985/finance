@@ -435,7 +435,7 @@ class HomeScreen extends HookWidget {
           ),
           SizedBox(height: 40.h),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
             child: Text(
               'New-In',
               style: context.textTheme.headlineSmall!.copyWith(

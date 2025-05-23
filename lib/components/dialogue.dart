@@ -20,7 +20,7 @@ class CustomDialog {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 15.w),
+                  margin: EdgeInsets.symmetric(horizontal: 25.w),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: Color(0XFFFFFFFF),
@@ -90,87 +90,3 @@ class CustomDialog {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// SingleChildScrollView(
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               mainAxisSize: MainAxisSize.min,
-//               children: [
-//                 Container(
-//                   decoration: BoxDecoration(
-//                     borderRadius: BorderRadius.circular(8),
-//                     color: Color(0XFFFFFFFF),
-//                   ),
-//                   margin: EdgeInsets.symmetric(horizontal: 20.h),
-//                   // padding: EdgeInsets.fromLTRB(20.h,30.h,20.h,21.h
-//                   // ),
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     mainAxisSize: MainAxisSize.min,
-//                     children: [
-//                       Image.asset(imagePath),
-//                       SizedBox(height: 20.h),
-//                       content,
-//                       SizedBox(height: 30.h),
-//                       Row(
-//                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                         children: [
-//                           TextButton(
-//                             onPressed: onSecondaryPressed,
-//                             child: Text(
-//                               secondaryButtonText,
-//                               style: context.textTheme.bodyLarge!.copyWith(
-//                                 fontFamily: 'CircularStd',
-//                                 color: Color(0XFF4F5877),
-//                               ),
-//                             ),
-//                           ),
-//                           InkWell(
-//                             onTap: () {
-//                               Navigator.pop(context);
-//                             },
-//                             child: Container(
-//                               decoration: BoxDecoration(
-//                                 borderRadius: BorderRadius.circular(4),
-//                                 color: buttonColor,
-//                               ),
-//                               child: Padding(
-//                                 padding: const EdgeInsets.all(8.0),
-//                                 child: Text(
-//                                   primaryButtonText,
-//                                   style: context.textTheme.bodyLarge!.copyWith(
-//                                     fontFamily: 'CircularStd',
-//                                   ),
-//                                 ),
-//                               ),
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//                 SizedBox(height: 30),
-//                 GestureDetector(
-//                   onTap: () {
-//                     Navigator.pop(context);
-//                   },
-//                   child: Icon(Icons.cancel, color: Colors.white, size: 32),
-//                 ),
-//               ],
-//             ),
-//           ),

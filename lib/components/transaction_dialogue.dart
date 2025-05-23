@@ -7,37 +7,36 @@ class TransactionDialogue {
   static void show({
     required BuildContext context,
     required String title,
-    required String amount,
     required String remark,
-    required Widget content,
     required String imagePath,
     required String primaryButtonText,
-    required VoidCallback onPrimaryPressed,
+    required Color containerColor,
+    required String statusText,
+    required Color textcolor,
+    required Color buttonTextColor,
     required String secondaryButtonText,
-    required VoidCallback onSecondaryPressed,
-    required VoidCallback onCancelPressed,
-    required Color buttonColor,
-  }) 
-  
-  {
+  }) {
     showDialog(
       context: context,
       barrierDismissible: true,
-      builder:
-          (_) {
-            final now = DateTime.now();
-            final date = DateFormat('MMM d, y h:mm a').format(now);
-            return Column(
+      builder: (_) {
+        final now = DateTime.now();
+        final date = DateFormat('MMM d, y h:mm a').format(now);
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.r),
                   color: Color(0XFFFFFFFF),
                 ),
-                margin: EdgeInsets.symmetric(horizontal: 20.h),
+                margin: EdgeInsets.symmetric(horizontal: 25.w),
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(20.h, 23.h, 20.h, 20.h),
+                  padding: EdgeInsets.fromLTRB(20.w, 20.h, 20.w, 20.h),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
                         title,
@@ -45,29 +44,27 @@ class TransactionDialogue {
                           color: Color(0XFF001140),
                         ),
                       ),
-                      SizedBox(height: 30),
-                      Expanded(
-                        child: Row(
-                          children: [
-                            Text(
-                              remark,
-                              style: context.textTheme.bodyMedium!.copyWith(
-                                color: Color(0XFF001140),
-                              ),
-                            ),
-                            Spacer(),
-                            Image.asset(imagePath),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 24.h),
-                      Divider(thickness: 1),
-                      SizedBox(height: 26.h),
+                      SizedBox(height: 30.h),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            remark,
+                            style: context.textTheme.bodyMedium!.copyWith(
+                              color: Color(0XFF001140),
+                            ),
+                          ),
+                          Spacer(),
+                          Image.asset(imagePath),
+                        ],
+                      ),
+                      SizedBox(height: 8.h),
+                      Divider(thickness: 1),
+                      SizedBox(height: 8.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
                                 'Amount',
@@ -75,17 +72,17 @@ class TransactionDialogue {
                                   color: Color(0XFF8791A7),
                                 ),
                               ),
+                              SizedBox(height: 4.h),
                               Text(
-                                '100',
+                                'N100,00',
                                 style: context.textTheme.bodyMedium!.copyWith(
                                   color: Color(0XFF001140),
                                 ),
                               ),
                             ],
                           ),
-                          Spacer(),
                           Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
                                 'Type',
@@ -93,6 +90,7 @@ class TransactionDialogue {
                                   color: Color(0XFF8791A7),
                                 ),
                               ),
+                              SizedBox(height: 4.h),
                               Text(
                                 'Credit',
                                 style: context.textTheme.bodyMedium!.copyWith(
@@ -103,11 +101,14 @@ class TransactionDialogue {
                           ),
                         ],
                       ),
+                      SizedBox(height: 8.h),
                       Divider(thickness: 1),
+                      SizedBox(height: 8.h),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                                                    Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Date',
@@ -115,18 +116,84 @@ class TransactionDialogue {
                                   color: Color(0XFF8791A7),
                                 ),
                               ),
-                              Text(date)
-                            
+                              SizedBox(height: 4.h),
+                              Text(
+                                date,
+                                style: context.textTheme.bodyMedium!.copyWith(
+                                  color: Color(0XFF001140),
+                                ),
+                              ),
                             ],
                           ),
-                        ],)
+                          Spacer(),
+                          Column(
+                            children: [
+                              Text(
+                                'Status',
+                                style: context.textTheme.titleMedium!.copyWith(
+                                  color: Color(0XFF8791A7),
+                                ),
+                              ),
+                              SizedBox(height: 4.h),
+                              Text(
+                                statusText,
+                                style: context.textTheme.bodyMedium!.copyWith(
+                                  color: textcolor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+
+                      SizedBox(height: 24.h),
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () => Navigator.pop(context),
+                            child: Text(
+                              primaryButtonText,
+                              style: context.textTheme.titleLarge!.copyWith(
+                                color: Color(0XFF8791A7),
+                              ),
+                            ),
+                          ),
+                          Spacer(),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: containerColor,
+                              borderRadius: BorderRadius.circular(4.r),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 45,
+                                vertical: 10,
+                              ),
+                              child: Text(
+                                secondaryButtonText,
+                                style: context.textTheme.titleLarge!.copyWith(
+                                  color: buttonTextColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
               ),
+              SizedBox(height: 45.h),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(Icons.cancel, color: Colors.white, size: 32),
+              ),
             ],
-          );
-          } 
+          ),
+        );
+      },
     );
   }
 }

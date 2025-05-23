@@ -22,7 +22,7 @@ class ConfirmationCodeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: context.topPadding),
-                CustomBackButton(buttonColor: Color(0XFF8791A7)),
+                CustomBackButton(avatarColor: Color(0XFF27282B)),
                 SizedBox(height: 25.h),
                 Text(
                   'Enter your confirmation code',
