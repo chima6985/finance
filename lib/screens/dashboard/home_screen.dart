@@ -385,11 +385,14 @@ class HomeScreen extends HookWidget {
                         ),
                       ),
                       Spacer(),
-                      Text(
-                        'See all',
-                        style: context.textTheme.bodyMedium!.copyWith(
-                          fontFamily: 'CircularStd',
-                          color: Color(0XFF4D84FF),
+                      InkWell(
+                        onTap: () {},
+                        child: Text(
+                          'See all',
+                          style: context.textTheme.bodyMedium!.copyWith(
+                            fontFamily: 'CircularStd',
+                            color: Color(0XFF4D84FF),
+                          ),
                         ),
                       ),
                     ],
@@ -435,7 +438,7 @@ class HomeScreen extends HookWidget {
           ),
           SizedBox(height: 40.h),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 15.h),
+            padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 17.h),
             child: Text(
               'New-In',
               style: context.textTheme.headlineSmall!.copyWith(
@@ -444,7 +447,6 @@ class HomeScreen extends HookWidget {
               ),
             ),
           ),
-          // SizedBox(height: 8.h),
           Divider(color: Color(0XFF4F5877).withAlpha(50)),
           SizedBox(
             child: Padding(
