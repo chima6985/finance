@@ -22,8 +22,7 @@ class HomeScreen extends HookWidget {
 
     return DecoratedContinerThree(
       resize: true,
-      child: SingleChildScrollView(
-        
+      child: Expanded(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -96,7 +95,7 @@ class HomeScreen extends HookWidget {
                     children: [
                       BalanceContainer(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15..w),
+                          padding: EdgeInsets.symmetric(horizontal: 15.w),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -130,7 +129,7 @@ class HomeScreen extends HookWidget {
                                       ),
 
                                       child: Padding(
-                                        padding: const EdgeInsets.all(7.0),
+                                        padding: EdgeInsets.all(7.0),
                                         child: Row(
                                           children: [
                                             Icon(
@@ -207,7 +206,7 @@ class HomeScreen extends HookWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 20),
+                            SizedBox(height: 20.h),
                             Row(
                               children: [
                                 InkWell(
@@ -247,7 +246,7 @@ class HomeScreen extends HookWidget {
             ),
             SizedBox(height: 24.h),
             Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 15.0.w),
+              padding: EdgeInsets.symmetric(horizontal: 15.0.w),
               child: InkWell(
                 onTap: () {
                   showModalBottomSheet(
@@ -271,8 +270,8 @@ class HomeScreen extends HookWidget {
                           child: SingleChildScrollView(
                             child: Container(
                               margin: EdgeInsets.symmetric(
-                                horizontal: 20,
-                                vertical: 16,
+                                horizontal: 20.w,
+                                vertical: 16.h,
                               ),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -311,7 +310,7 @@ class HomeScreen extends HookWidget {
                                     color: Color(0XFF4D84FF),
                                     height: 55.h,
                                     width: double.infinity,
-                                    borderRadius: 4.h,
+                                    borderRadius: 4.r,
                                     onTap: () {},
                                     child: Text(
                                       'Update GetEquity',
@@ -335,9 +334,9 @@ class HomeScreen extends HookWidget {
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0,
-                          vertical: 12,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20.0.w,
+                          vertical: 12.h,
                         ),
                         child: Row(
                           children: [
@@ -366,9 +365,9 @@ class HomeScreen extends HookWidget {
                       ),
                       SizedBox(height: 14.h),
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0,
-                          vertical: 15,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20.0.w,
+                          vertical: 15.w,
                         ),
                         child: Text(
                           'Please complete your verification process in order to start trading',
@@ -387,10 +386,7 @@ class HomeScreen extends HookWidget {
             Container(
               color: Color(0XFFF8F9FC),
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 15..w,
-                  vertical: 10.h,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -455,101 +451,110 @@ class HomeScreen extends HookWidget {
                 ),
               ),
             ),
-            SizedBox(height: 40.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 17.h),
-              child: Text(
-                'New-In',
-                style: context.textTheme.headlineSmall!.copyWith(
-                  fontFamily: 'CircularStd',
-                  color: Color(0XFF001140),
+            SizedBox(height: 30.h),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 15.0.w,
+                    vertical: 10.h,
+                  ),
+                  child: Text(
+                    'New-In',
+                    style: context.textTheme.headlineSmall!.copyWith(
+                      fontFamily: 'CircularStd',
+                      color: Color(0XFF001140),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Divider(color: Color(0XFF4F5877).withAlpha(50)),
-            SizedBox(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(
-                  15.w,
-                  8.h,
-                  15.w,
-                  context.btmPadding,
+                Divider(color: Color(0XFF4F5877).withAlpha(50)),
+                SizedBox(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(
+                      15.w,
+                      8.h,
+                      15.w,
+                      context.btmPadding,
+                    ),
+                    child: Row(
+                      mainAxisAlignment:
+                          context.isTablet
+                              ? MainAxisAlignment.center
+                              : MainAxisAlignment.spaceBetween,
+                      children: [
+                        BottomNavButton(
+                          buttonName: 'OverView',
+                          buttonIcon: 'assets/images/svgs/overview.svg',
+                          position: 0,
+                          currentPosition: currentPosition.value,
+                          onPressed: () {
+                            if (0 != currentPosition.value) {
+                              currentPosition.value = 0;
+                              HapticFeedback.lightImpact();
+                              context.pushNamed(HomeScreen.id);
+                            }
+                          },
+                        ),
+                        if (context.isTablet) SizedBox(width: 80.w),
+                        BottomNavButton(
+                          buttonName: 'Trade',
+                          buttonIcon: 'assets/images/svgs/trade.svg',
+                          position: 1,
+                          currentPosition: currentPosition.value,
+                          onPressed: () {
+                            if (1 != currentPosition.value) {
+                              currentPosition.value = 1;
+                              HapticFeedback.lightImpact();
+                            }
+                          },
+                        ),
+                        if (context.isTablet) SizedBox(width: 80.w),
+                        BottomNavButton(
+                          buttonName: 'Transactions',
+                          buttonIcon: 'assets/images/svgs/transaction.svg',
+                          position: 2,
+                          currentPosition: currentPosition.value,
+                          onPressed: () {
+                            if (2 != currentPosition.value) {
+                              currentPosition.value = 2;
+                              HapticFeedback.lightImpact();
+                              context.pushNamed(TransactionScreen.id);
+                            }
+                          },
+                        ),
+                        if (context.isTablet) SizedBox(width: 80.w),
+                        BottomNavButton(
+                          buttonName: 'Wallet',
+                          buttonIcon: 'assets/images/svgs/wallet.svg',
+                          position: 3,
+                          currentPosition: currentPosition.value,
+                          onPressed: () {
+                            if (3 != currentPosition.value) {
+                              currentPosition.value = 3;
+                              HapticFeedback.lightImpact();
+                            }
+                          },
+                        ),
+                        if (context.isTablet) SizedBox(width: 80.w),
+                        BottomNavButton(
+                          buttonName: 'More',
+                          buttonIcon: 'assets/images/svgs/more.svg',
+                          position: 4,
+                          currentPosition: currentPosition.value,
+                          onPressed: () {
+                            if (4 != currentPosition.value) {
+                              currentPosition.value = 4;
+                              HapticFeedback.lightImpact();
+                            }
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                child: Row(
-                  mainAxisAlignment:
-                      context.isTablet
-                          ? MainAxisAlignment.center
-                          : MainAxisAlignment.spaceBetween,
-                  children: [
-                    BottomNavButton(
-                      buttonName: 'OverView',
-                      buttonIcon: 'assets/images/svgs/overview.svg',
-                      position: 0,
-                      currentPosition: currentPosition.value,
-                      onPressed: () {
-                        if (0 != currentPosition.value) {
-                          currentPosition.value = 0;
-                          HapticFeedback.lightImpact();
-                          context.pushNamed(HomeScreen.id);
-                        }
-                      },
-                    ),
-                    if (context.isTablet) SizedBox(width: 80.w),
-                    BottomNavButton(
-                      buttonName: 'Trade',
-                      buttonIcon: 'assets/images/svgs/trade.svg',
-                      position: 1,
-                      currentPosition: currentPosition.value,
-                      onPressed: () {
-                        if (1 != currentPosition.value) {
-                          currentPosition.value = 1;
-                          HapticFeedback.lightImpact();
-                        }
-                      },
-                    ),
-                    if (context.isTablet) SizedBox(width: 80.w),
-                    BottomNavButton(
-                      buttonName: 'Transactions',
-                      buttonIcon: 'assets/images/svgs/transaction.svg',
-                      position: 2,
-                      currentPosition: currentPosition.value,
-                      onPressed: () {
-                        if (2 != currentPosition.value) {
-                          currentPosition.value = 2;
-                          HapticFeedback.lightImpact();
-                          context.pushNamed(TransactionScreen.id);
-                        }
-                      },
-                    ),
-                    if (context.isTablet) SizedBox(width: 80.w),
-                    BottomNavButton(
-                      buttonName: 'Wallet',
-                      buttonIcon: 'assets/images/svgs/wallet.svg',
-                      position: 3,
-                      currentPosition: currentPosition.value,
-                      onPressed: () {
-                        if (3 != currentPosition.value) {
-                          currentPosition.value = 3;
-                          HapticFeedback.lightImpact();
-                        }
-                      },
-                    ),
-                    if (context.isTablet) SizedBox(width: 80.w),
-                    BottomNavButton(
-                      buttonName: 'More',
-                      buttonIcon: 'assets/images/svgs/more.svg',
-                      position: 4,
-                      currentPosition: currentPosition.value,
-                      onPressed: () {
-                        if (4 != currentPosition.value) {
-                          currentPosition.value = 4;
-                          HapticFeedback.lightImpact();
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ),
+              ],
             ),
           ],
         ),
