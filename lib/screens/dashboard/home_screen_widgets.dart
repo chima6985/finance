@@ -42,7 +42,7 @@ class Tokens extends StatelessWidget {
         color: Color(0XFFF0F4FD),
         borderRadius: BorderRadius.circular(5),
       ),
-      child: Padding(padding: const EdgeInsets.all(3.0), child: child),
+      child: Padding(padding: EdgeInsets.all(2.0.w), child: child),
     );
   }
 }

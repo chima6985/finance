@@ -21,7 +21,7 @@ class NavObserver extends NavigatorObserver {
 }
 
 final router = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/signUpScreen',
   observers: [NavObserver()],
 
   routes: [

@@ -10,6 +10,7 @@ class OnboardScreenTwo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: DecoratedContainer(
+        resize: false,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Column(

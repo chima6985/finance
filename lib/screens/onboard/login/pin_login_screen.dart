@@ -14,6 +14,7 @@ class PinLoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: DecoratedContainerTwo(
+        resize: true,
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.0),

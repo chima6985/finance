@@ -17,6 +17,7 @@ class LoginScreen extends HookWidget {
     return Scaffold(
       backgroundColor: Color(0xFF0D0E12),
       body: DecoratedContainerTwo(
+        resize: true,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: SingleChildScrollView(

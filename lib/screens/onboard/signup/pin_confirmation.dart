@@ -13,36 +13,35 @@ class PinConfirmationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: DecoratedContainerTwo(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: context.topPadding),
-                CustomBackButton(
-                  avatarColor: Color(0XFF27282B),
-                  arrowColor: Color(0XFF8791A7),
+        resize: false,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: context.topPadding),
+              CustomBackButton(
+                avatarColor: Color(0XFF27282B),
+                arrowColor: Color(0XFF8791A7),
+              ),
+              SizedBox(height: 25.h),
+              Text(
+                'Confirm 4-digit PIN',
+                style: context.textTheme.headlineSmall!.copyWith(
+                  fontFamily: 'CircularStd',
+                  fontSize: 24.sp,
                 ),
-                SizedBox(height: 25.h),
-                Text(
-                  'Confirm 4-digit PIN',
-                  style: context.textTheme.headlineSmall!.copyWith(
-                    fontFamily: 'CircularStd',
-                    fontSize: 24.sp,
-                  ),
-                ),
-                SizedBox(height: 80),
-                CustomPinField(
-                  length: 4,
-                  onComplete: (p0) async {
-                    await Future.delayed(Duration(seconds: 2), () {
-                      context.pushNamed(MonoScreen.id);
-                    });
-                  },
-                ),
-              ],
-            ),
+              ),
+              SizedBox(height: 80),
+              CustomPinField(
+                length: 4,
+                onComplete: (p0) async {
+                  await Future.delayed(Duration(seconds: 2), () {
+                    context.pushNamed(MonoScreen.id);
+                  });
+                },
+              ),
+            ],
           ),
         ),
       ),

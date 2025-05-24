@@ -13,6 +13,7 @@ class OnboardScreenThree extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: DecoratedContainer(
+        resize: false,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.0),
           child: Column(

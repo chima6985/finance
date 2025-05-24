@@ -14,6 +14,21 @@ class FilterScreen extends StatefulWidget {
 
 class _FilterScreenState extends State<FilterScreen> {
   bool? isChecked = false;
+  final TextEditingController dateController = TextEditingController();
+
+  void selectDate() async {
+    final DateTime? picked = await showDatePicker(
+      barrierLabel: 'Select Date',
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime.now(),
+    );
+    if (picked != null) {
+      dateController.text = '${picked.day}/${picked.month}/${picked.year}';
+    }
+  }
+
   List<String> options = ['Bought', 'Sold', 'Withdrawal', 'Deposits'];
   List<String> icons = [
     'assets/images/jpegs/in.png',
@@ -22,7 +37,6 @@ class _FilterScreenState extends State<FilterScreen> {
     'assets/images/jpegs/deposits.png',
   ];
   List<bool> checked = [false, false, false, false];
-  final TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,8 +104,10 @@ class _FilterScreenState extends State<FilterScreen> {
                   ),
                   SizedBox(height: 24.h),
                   CustomTextField(
+                    onTap: selectDate,
                     textColor: Colors.black,
-                    controller: controller,
+                    readOnly: true,
+                    controller: dateController,
                     fillColor: Color(0XFFFFFFFF),
                     hintText: 'Start Date',
                     hintStyle: context.textTheme.bodyMedium!.copyWith(
@@ -102,7 +118,9 @@ class _FilterScreenState extends State<FilterScreen> {
                   SizedBox(height: 24.h),
                   CustomTextField(
                     textColor: Colors.black,
-                    controller: controller,
+                    controller: dateController,
+                    onTap: selectDate,
+                    readOnly: true,
                     fillColor: Color(0XFFFFFFFF),
                     hintText: 'End Date',
                     hintStyle: context.textTheme.bodyMedium!.copyWith(

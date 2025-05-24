@@ -18,7 +18,7 @@ class AboutYouScreen extends HookWidget {
     final phoneController = useTextEditingController();
     final dobController = useTextEditingController();
 
-    void showDatepicker() async {
+    void datePicker() async {
       final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
@@ -33,6 +33,7 @@ class AboutYouScreen extends HookWidget {
     return Scaffold(
       backgroundColor: Color(0xFF0D0E12),
       body: DecoratedContainerTwo(
+        resize: true,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.0),
           child: SingleChildScrollView(
@@ -91,7 +92,7 @@ class AboutYouScreen extends HookWidget {
                 CustomTextField(
                   fillColor: Color(0XFF14151A),
                   textColor: Color(0XFF8791A7),
-                  onTap: showDatepicker,
+                  onTap: datePicker,
                   controller: dobController,
                   readOnly: true,
                   hintText: 'Date of birth',

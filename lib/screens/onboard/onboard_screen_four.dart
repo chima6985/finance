@@ -13,6 +13,7 @@ class OnboardScreenFour extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: DecoratedContainer(
+        resize: true,
         child: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.0),

@@ -6,13 +6,13 @@ class DecoratedContainer extends StatefulWidget {
     this.enablePadding = false,
     required this.child,
     this.isAnimate = false,
-    // this.canPop =true,
+    required this.resize,
   });
 
   final child;
   final bool enablePadding;
   final bool isAnimate;
-  // final bool canPop;
+  final bool resize;
   @override
   State<DecoratedContainer> createState() => _DecoratedContainerState();
 }
@@ -22,16 +22,22 @@ class _DecoratedContainerState extends State<DecoratedContainer> {
   Widget build(BuildContext context) {
     final mqr = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        width: mqr.width,
-        height: mqr.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/jpegs/dec_container.png'),
-            fit: BoxFit.cover,
-          ),
+      resizeToAvoidBottomInset: widget.resize,
+      body: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: MediaQuery.of(context).size.height,
         ),
-        child: widget.child,
+        child: Container(
+          width: mqr.width,
+          height: mqr.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/jpegs/dec_container.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: widget.child,
+        ),
       ),
     );
   }
