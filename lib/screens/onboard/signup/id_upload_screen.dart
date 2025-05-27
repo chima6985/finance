@@ -1,16 +1,26 @@
+import 'dart:io';
 import 'package:finance_app/components/components.dart';
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:finance_app/screens/onboard/signup/signup.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:go_router/go_router.dart';
 
-class IdUploadScreen extends StatelessWidget {
+class IdUploadScreen extends HookWidget {
   const IdUploadScreen({super.key});
   static const String id = 'idUploadScreen';
 
   @override
   Widget build(BuildContext context) {
+    File? image;
+    Future<void> _pickImageFromGallery() async {
+      final picker = ImagePicker();
+      final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+      print('$pickedImage this imaeg was picked');
+    }
+
     return Scaffold(
       body: DecoratedContainerTwo(
         resize: false,
@@ -56,7 +66,9 @@ class IdUploadScreen extends StatelessWidget {
                       Icons.file_upload_outlined,
                       color: Color(0XFF4D84FF),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      _pickImageFromGallery();
+                    },
                     label: Text(
                       'Upload',
                       style: context.textTheme.bodyLarge!.copyWith(
@@ -101,3 +113,58 @@ class IdUploadScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// class imageSelector extends StatefulWidget {
+//   const imageSelector({super.key});
+
+//   @override
+//   State<imageSelector> createState() => _imageSelectorState();
+// }
+
+// class _imageSelectorState extends State<imageSelector> {
+  
+//   File? image;
+
+// Future<void> _pickImageFromGallery() async {
+//     final picker =  ImagePicker();
+//     final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return 
+//   }
+// }
