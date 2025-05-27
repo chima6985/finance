@@ -112,7 +112,7 @@ class TransactionScreen extends HookWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 8.h, left: 15.w, right: 15.w),
+                  padding: EdgeInsets.only(top: 0.h, left: 15.w, right: 15.w),
                   child: TabBarView(
                     children: [
                       AllTransactions(
@@ -121,8 +121,8 @@ class TransactionScreen extends HookWidget {
                         trailingText: 'Today',
                         showDivider: true,
                         imagePath: 'assets/images/jpegs/out.png',
-                        ),
-                      TransactionTiles(
+                      ),
+                      Completed(
                         title: 'Purchased 200 Paystack token...',
                         subtitle: 'GETXN_TKN_BUY_954675741',
                         trailingText: 'Today',
