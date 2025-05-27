@@ -33,19 +33,22 @@ class _OnboardingWrapperState extends State<OnboardingWrapper> {
     return Scaffold(
       body: Stack(
         children: [
-          PageView(
-            scrollDirection: Axis.vertical,
-            physics: BouncingScrollPhysics(),
-            controller: _pageController,
-            onPageChanged: (index) {
-              setState(() => _currentPage = index);
-            },
-            children: const [
-              OnboardScreenOne(),
-              OnboardScreenTwo(),
-              OnboardScreenThree(),
-              OnboardScreenFour(),
-            ],
+          Container(
+            color: Colors.blue,
+            child: PageView(
+              scrollDirection: Axis.vertical,
+              physics: BouncingScrollPhysics(),
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() => _currentPage = index);
+              },
+              children: const [
+                OnboardScreenOne(),
+                OnboardScreenTwo(),
+                OnboardScreenThree(),
+                OnboardScreenFour(),
+              ],
+            ),
           ),
           if (_currentPage < 3)
             Positioned(
@@ -83,7 +86,7 @@ class _OnboardingWrapperState extends State<OnboardingWrapper> {
                     controller: _pageController,
                     count: 4,
                     axisDirection: Axis.vertical,
-                    effect: ExpandingDotsEffect(
+                    effect: JumpingDotEffect(
                       dotColor: const Color(0XFF153CA899),
                       activeDotColor: const Color(0XFF27AE60),
                       dotHeight: 10,

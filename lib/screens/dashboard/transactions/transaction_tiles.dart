@@ -74,3 +74,35 @@ class TransactionTiles extends StatelessWidget {
     );
   }
 }
+
+class AllTransactions extends StatelessWidget {
+  const AllTransactions({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.trailingText,
+    required this.showDivider,
+    required this.imagePath,
+  });
+  final String title;
+  final String subtitle;
+  final String trailingText;
+  final bool showDivider;
+  final String imagePath;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children:
+          List<Widget>.generate(10, (index) {
+            return TransactionTiles(
+              title: title,
+              subtitle: subtitle,
+              trailingText: trailingText,
+              showDivider: showDivider,
+              imagePath: imagePath,
+            );
+          }).toList(),
+    );
+  }
+}
