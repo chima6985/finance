@@ -21,7 +21,7 @@ class NavObserver extends NavigatorObserver {
 }
 
 final router = GoRouter(
-  initialLocation: '/transactionScreen',
+  initialLocation: '/',
   observers: [NavObserver()],
 
   routes: [

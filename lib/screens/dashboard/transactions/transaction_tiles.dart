@@ -63,7 +63,7 @@ class TransactionTiles extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 15.h),
+                  SizedBox(height: 12.h),
                   if (showDivider)
                     Divider(height: 1, thickness: 1, color: Color(0xFFEEEFF3)),
                 ],
@@ -99,6 +99,7 @@ class AllTransactions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: EdgeInsets.only(top: 10),
       children:
           List.generate(5, (index) {
             final randomIndex = Random().nextInt(imageOptions.length);
@@ -144,8 +145,9 @@ class Completed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: EdgeInsets.only(top: 10),
       children:
-          List.generate(8, (index) {
+          List.generate(7, (index) {
             final randomIndex = Random().nextInt(imageOptions.length);
             final imagePath = imageOptions[randomIndex];
             final title =
@@ -153,6 +155,40 @@ class Completed extends StatelessWidget {
                     ? 'Purchased 100 WeMove Tec...'
                     : 'Sold 100 WeMove Tec..';
             imageOptions[Random().nextInt(imageOptions.length)];
+            return TransactionTiles(
+              title: title,
+              subtitle: subtitle,
+              trailingText: trailingText,
+              showDivider: showDivider,
+              imagePath: imagePath,
+            );
+          }).toList(),
+    );
+  }
+}
+
+class PendingTransactions extends StatelessWidget {
+  const PendingTransactions({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.trailingText,
+    required this.showDivider,
+    required this.imagePath,
+  });
+
+  final String title;
+  final String subtitle;
+  final String trailingText;
+  final bool showDivider;
+  final String imagePath;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: EdgeInsets.only(top: 10),
+      children:
+          List.generate(6, (index) {
             return TransactionTiles(
               title: title,
               subtitle: subtitle,

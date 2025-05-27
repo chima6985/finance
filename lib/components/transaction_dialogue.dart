@@ -82,7 +82,7 @@ class TransactionDialogue {
                             ],
                           ),
                           Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
                                 'Type',
@@ -127,6 +127,7 @@ class TransactionDialogue {
                           ),
                           Spacer(),
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
                                 'Status',
@@ -166,7 +167,7 @@ class TransactionDialogue {
                             ),
                             child: Padding(
                               padding: EdgeInsets.symmetric(
-                                horizontal: 45,
+                                horizontal: 30,
                                 vertical: 10,
                               ),
                               child: Text(

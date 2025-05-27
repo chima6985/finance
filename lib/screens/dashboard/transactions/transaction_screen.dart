@@ -31,6 +31,20 @@ class TransactionScreen extends HookWidget {
                 child: Row(
                   children: [
                     InkWell(
+                      onDoubleTap: () {
+                        TransactionDialogue.show(
+                          context: context,
+                          title: 'Transaction Summary',
+                          remark: 'Sold 100 Paystack Token',
+                          imagePath: 'assets/images/jpegs/flcn.png',
+                          primaryButtonText: 'Close',
+                          statusText: 'Pending',
+                          containerColor: Color(0XFFFEE6E6),
+                          buttonTextColor: Color(0XFFE84343),
+                          textcolor: Color(0XFFF2994A),
+                          secondaryButtonText: 'Cancel Transaction',
+                        );
+                      },
                       onTap: () {
                         TransactionDialogue.show(
                           context: context,
@@ -59,6 +73,33 @@ class TransactionScreen extends HookWidget {
                       onTap: () {
                         context.pushNamed(FilterScreen.id);
                       },
+                      onDoubleTap: () {
+                        CustomDialog.show(
+                          imagePath: 'assets/images/jpegs/cancel.png',
+                          context: context,
+                          primaryButtonText: 'Don’t Cancel',
+                          buttonColor: Color(0XFFE84343),
+                          secondaryButtonText: 'Yes, Cancel',
+                          content: Column(
+                            children: [
+                              Text(
+                                'Cancel Transaction?',
+                                style: context.textTheme.headlineSmall!
+                                    .copyWith(color: Color(0XFFE84343)),
+                              ),
+                              SizedBox(height: 10.h),
+                              Text(
+                                textAlign: TextAlign.center,
+                                'By canceling, this trade will be removed from\nlisting and you will have to post again if you\nchange your mind',
+                                style: context.textTheme.bodyMedium!.copyWith(
+                                  fontFamily: 'CircularStd',
+                                  color: Color(0XFF001140),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                       child: SvgPicture.asset('assets/images/svgs/filters.svg'),
                     ),
                     SizedBox(width: 20.w),
@@ -85,34 +126,35 @@ class TransactionScreen extends HookWidget {
                       color: Color(0XFFE1E6F0),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(3),
+                      padding: EdgeInsets.all(2),
                       child: TabBar(
                         indicatorSize: TabBarIndicatorSize.tab,
-                        dividerColor: Colors.black.withAlpha(1),
+                        automaticIndicatorColorAdjustment: true,
                         indicator: BoxDecoration(
                           color: Color(0XFFFFFFFF),
                           borderRadius: BorderRadius.circular(8),
                           boxShadow: [
                             BoxShadow(
-                              offset: Offset(0, 2),
-                              blurRadius: 2,
-                              spreadRadius: 0,
+                              blurStyle: BlurStyle.outer,
+                              blurRadius: 1,
+                              offset: Offset(0, 1),
                             ),
                           ],
                         ),
                         tabs: [
                           TabItem(title: 'All'),
                           TabItem(title: 'Completed'),
-                          TabItem(title: 'pending'),
+                          TabItem(title: 'Pending'),
                         ],
                       ),
                     ),
                   ),
                 ),
               ),
+
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 0.h, left: 15.w, right: 15.w),
+                  padding: EdgeInsets.only(left: 15.w, right: 15.w),
                   child: TabBarView(
                     children: [
                       AllTransactions(
@@ -129,12 +171,12 @@ class TransactionScreen extends HookWidget {
                         showDivider: true,
                         imagePath: 'assets/images/jpegs/out.png',
                       ),
-                      TransactionTiles(
-                        title: 'Wallet funding',
-                        subtitle: 'N200,000',
+                      PendingTransactions(
+                        title: 'Purchased 200 Paystack token...',
+                        subtitle: '\$55 . Pending...',
                         trailingText: 'Today',
                         showDivider: true,
-                        imagePath: 'assets/images/jpegs/in.png',
+                        imagePath: 'assets/images/jpegs/pending.png',
                       ),
                     ],
                   ),
