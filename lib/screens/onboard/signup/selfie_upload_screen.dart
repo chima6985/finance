@@ -53,7 +53,7 @@ class SelfieUploadScreen extends StatelessWidget {
                       color: Color(0XFF8791A7),
                     ),
                   ),
-                  SizedBox(height: 78.h),
+                  SizedBox(height: 70.h),
                   TextButton.icon(
                     icon: Icon(
                       Icons.file_upload_outlined,
@@ -68,7 +68,7 @@ class SelfieUploadScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 117.h),
+                  SizedBox(height: 100.h),
                   ReusableButton(
                     color: Color(0XFF4D84FF),
                     height: 55.h,
@@ -84,7 +84,7 @@ class SelfieUploadScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 15.h),
                   TextButton(
                     onPressed: () {},
                     child: Text(

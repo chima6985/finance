@@ -40,7 +40,7 @@ class IdUploadScreen extends HookWidget {
                   CircleAvatar(
                     backgroundColor: Color(0XFF4D84FF),
                     radius: 80.sp,
-                    child: Image.asset('assets/images/jpegs/id.png'),
+                    child: Image.file(File('assets/images/jpegs/id.png')),
                   ),
                   SizedBox(height: 24.h),
                   Text(

@@ -21,7 +21,7 @@ class NavObserver extends NavigatorObserver {
 }
 
 final router = GoRouter(
-  initialLocation: '/idUploadScreen',
+  initialLocation: '/',
   observers: [NavObserver()],
 
   routes: [
