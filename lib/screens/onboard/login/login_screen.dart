@@ -14,6 +14,7 @@ class LoginScreen extends HookWidget {
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
     final obscureText = useState(true);
+    final isLoading = useState(false);
     return Scaffold(
       backgroundColor: Color(0xFF0D0E12),
       body: DecoratedContainerTwo(

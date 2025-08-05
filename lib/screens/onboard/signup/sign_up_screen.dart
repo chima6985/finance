@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:finance_app/extension/context.extension.dart';
@@ -16,6 +19,7 @@ class SignUpScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = useState(false);
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
     final obscureText = useState(true);
@@ -31,6 +35,87 @@ class SignUpScreen extends HookWidget {
       hasSpecialChar.value = password.contains(
         RegExp(r'[!@#$%^&*(),.?":{}|<>]'),
       );
+    }
+
+    bool isValidEmail(String email) {
+      return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
+    }
+
+    bool isValidPassword() {
+      return hasUppercase.value && 
+             hasLowercase.value && 
+             hasNumber.value && 
+             hasSpecialChar.value &&
+             passwordController.text.length >= 8;
+    }
+
+    Future<void> handleSignUp() async {
+      final email = emailController.text.trim();
+      final password = passwordController.text.trim();
+
+
+      if (email.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Please enter your email address')),
+        );
+        return;
+      }
+
+      if (!isValidEmail(email)) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Please enter a valid email address')),
+        );
+        return;
+      }
+
+      if (password.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Please enter your password')),
+        );
+        return;
+      }
+
+      if (!isValidPassword()) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Password must meet all requirements')),
+        );
+        return;
+      }
+
+      isLoading.value = true;
+
+      try {
+        final response = await http.post(
+          Uri.parse('https://stg-msb-api.theseedfi.com/user/auth/signup'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({
+            'email': email,
+            'password': password,
+            'reenter_password': password,
+          }),
+        );
+
+        if (response.statusCode == 201 || response.statusCode == 200) {
+          
+          context.pushNamed(AboutYouScreen.id);
+        } else {
+          log(response.body);
+          final errorData = jsonDecode(response.body);
+          final errorMessage = (errorData['message']);
+          
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(errorMessage)),
+          );
+          log('Sign up failed: ${response.body}');
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Network error. Please check your connection.')),
+        );
+        log('Network error: $e');
+      } finally {
+        isLoading.value = false;
+      }
     }
 
     useEffect(() {
@@ -87,18 +172,6 @@ class SignUpScreen extends HookWidget {
                     controller: emailController,
                     hintText: 'Enter email address',
                     keyboardType: TextInputType.emailAddress,
-                    onTap: () async {
-                      final email = emailController.text.trim();
-                      final response = await http.post(
-                        Uri.parse(
-                          'https://stg-msb-api.theseedfi.com/user/auth/signup',
-                        ),
-                        headers: {'Content-Type': 'application/json'},
-                        body: jsonEncode({
-                          'email' : email,
-                        })
-                      );
-                    },
                   ),
                 ),
                 SizedBox(height: 24.h),
@@ -112,24 +185,9 @@ class SignUpScreen extends HookWidget {
                     hintText: 'Enter password',
                     obscureText: obscureText.value,
                     suffixIcon: InkWell(
-                       onTap: () async {
-                      final password = passwordController.text.trim();
-                      final response = await http.post(
-                        Uri.parse(
-                          'https://stg-msb-api.theseedfi.com/user/auth/signup',
-                        ),
-                        headers: {'Content-Type': 'application/json'},
-                        body: jsonEncode({
-                          'password' : password,
-                        })
-                      );
-                      if (response.statusCode == 201 || response.statusCode == 200){
-                        context.pushNamed(AboutYouScreen.id);
-                      }
-                      else {
-                        print('Sign up failed: ${response.body}');
-                      }
-                    },
+                      onTap: () {
+                        obscureText.value = !obscureText.value;
+                      },
                       child: Icon(
                         obscureText.value
                             ? Icons.visibility_off
@@ -172,15 +230,22 @@ class SignUpScreen extends HookWidget {
                   height: 55.h,
                   width: double.infinity,
                   borderRadius: 4.h,
-                  onTap: () {
-                    context.pushNamed(AboutYouScreen.id);
-                  },
-                  child: Text(
-                    'Continue',
-                    style: context.textTheme.headlineSmall!.copyWith(
-                      fontFamily: 'CircularStd',
-                    ),
-                  ),
+                  onTap: isLoading.value ? null : handleSignUp, // All logic moved here
+                  child: isLoading.value
+                      ? SizedBox(
+                          height: 20.sp,
+                          width: 20.sp,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          ),
+                        )
+                      : Text(
+                          'Continue',
+                          style: context.textTheme.headlineSmall!.copyWith(
+                            fontFamily: 'CircularStd',
+                          ),
+                        ),
                 ),
               ],
             ),
@@ -203,27 +268,55 @@ class PasswordStrengthChecker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isSmallScreen = screenWidth < 360;
+    final isMediumScreen = screenWidth < 414;  
+    final fontSize = isSmallScreen ? 11.sp : isMediumScreen ? 12.sp : 13.sp;
+    final iconSize = isSmallScreen ? 10.sp : isMediumScreen ? 12.sp : 14.sp;
+    final horizontalPadding = isSmallScreen ? 6.w : isMediumScreen ? 8.w : 10.w;
+    final verticalPadding = isSmallScreen ? 4.h : isMediumScreen ? 6.h : 8.h;
+    final iconTextSpacing = isSmallScreen ? 2.w : isMediumScreen ? 3.w : 4.w;
+
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
+      constraints: BoxConstraints(
+        minWidth: 0,
+        maxWidth: screenWidth * 0.45, 
+      ),
+      padding: EdgeInsets.symmetric(
+        horizontal: horizontalPadding,
+        vertical: verticalPadding,
+      ),
       decoration: BoxDecoration(
         color: Color(0XFF14151A),
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(6.r), 
         border: Border.all(
           color: isValid ? Color(0XFF00D98B) : Color(0XFF333333),
-          width: 1,
+          width: 1.w, 
         ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          if (isValid) Icon(Icons.check, color: Color(0XFF00D98B), size: 16.sp),
-          if (isValid) SizedBox(width: 1.w),
-          Text(
-            label,
-            style: TextStyle(
-              fontFamily: 'CircularStd',
-              color: isValid ? Color(0XFF00D98B) : Color(0XFF8791A7),
-              fontSize: 14.sp,
+          if (isValid) ...[
+            Icon(
+              Icons.check,
+              color: Color(0XFF00D98B),
+              size: iconSize,
+            ),
+            SizedBox(width: iconTextSpacing),
+          ],
+          Flexible(
+            child: Text(
+              label,
+              style: TextStyle(
+                fontFamily: 'CircularStd',
+                color: isValid ? Color(0XFF00D98B) : Color(0XFF8791A7),
+                fontSize: fontSize,
+                fontWeight: FontWeight.w400,
+              ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
             ),
           ),
         ],
@@ -231,3 +324,5 @@ class PasswordStrengthChecker extends StatelessWidget {
     );
   }
 }
+
+// ?? 'Sign up failed. Please try again.';
