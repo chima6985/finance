@@ -6,11 +6,20 @@ import 'package:finance_app/screens/onboard/onboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:http/http.dart';
 
 class ConfirmationCodeScreen extends StatelessWidget {
   const ConfirmationCodeScreen({super.key});
 
   static const String id = 'confirmationCodeScreen';
+  final response = await http.post(
+    Uri.parse('https://stg-msb-api.theseedfi.com/user/auth/verify-otp'),
+    headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({
+            'email': email,
+
+          }),
+  )
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +54,7 @@ class ConfirmationCodeScreen extends StatelessWidget {
               ),
               SizedBox(height: 48),
               CustomPinField(
-                length: 5,
+                length: 6,
                 onComplete: (p0) async {
                   await Future.delayed(Duration(seconds: 2), () {
                     context.pushNamed(SelfieUploadScreen.id);
@@ -53,11 +62,16 @@ class ConfirmationCodeScreen extends StatelessWidget {
                 },
               ),
               Center(
-                child: Text(
-                  'Resend Code',
-                  style: context.textTheme.bodyLarge!.copyWith(
-                    fontFamily: 'CircularStd',
-                    color: Color(0XFF4D84FF),
+                child: GestureDetector(
+                  onTap: () {
+                    // functionality for the resend password
+                  },
+                  child: Text(
+                    'Resend Code',
+                    style: context.textTheme.bodyLarge!.copyWith(
+                      fontFamily: 'CircularStd',
+                      color: Color(0XFF4D84FF),
+                    ),
                   ),
                 ),
               ),

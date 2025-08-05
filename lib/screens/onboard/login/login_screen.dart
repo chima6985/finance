@@ -1,8 +1,15 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:finance_app/components/components.dart';
 import 'package:finance_app/extension/context.extension.dart';
+import 'package:finance_app/screens/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends HookWidget {
   const LoginScreen({super.key});
@@ -15,6 +22,72 @@ class LoginScreen extends HookWidget {
     final passwordController = useTextEditingController();
     final obscureText = useState(true);
     final isLoading = useState(false);
+    bool isValidEmail(String email) {
+      return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
+    }
+
+    Future<void> handleSignIn() async {
+      final email = emailController.text.trim();
+      final password = passwordController.text.trim();
+
+      if (email.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Please enter your email address')),
+        );
+        return;
+      }
+
+      if (!isValidEmail(email)) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Please enter a valid email address')),
+        );
+        return;
+      }
+
+      if (password.isEmpty) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Please enter your password')));
+        return;
+      }
+
+      isLoading.value = true;
+
+      try {
+        final response = await http.post(
+          Uri.parse('https://stg-msb-api.theseedfi.com/user/auth/login'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({
+            'email': email,
+            'password': password,
+            'reenter_password': password,
+          }),
+        );
+
+        if (response.statusCode == 201 || response.statusCode == 200) {
+          context.pushNamed(HomeScreen.id);
+        } else {
+          log(response.body);
+          final errorData = jsonDecode(response.body);
+          final errorMessage = (errorData['message']);
+
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(errorMessage)));
+          log('Sign in failed: ${response.body}');
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Network error. Please check your connection.'),
+          ),
+        );
+        log('Network error: $e');
+      } finally {
+        isLoading.value = false;
+      }
+    }
+
     return Scaffold(
       backgroundColor: Color(0xFF0D0E12),
       body: DecoratedContainerTwo(
@@ -98,15 +171,23 @@ class LoginScreen extends HookWidget {
                   height: 55.h,
                   width: double.infinity,
                   borderRadius: 4.h,
-                  onTap: () {
-                    // context.pushNamed(AboutYouScreen.id);
-                  },
-                  child: Text(
-                    'Log In',
-                    style: context.textTheme.headlineSmall!.copyWith(
-                      fontFamily: 'CircularStd',
-                    ),
-                  ),
+                  onTap: isLoading.value ? null : handleSignIn,
+                  child:
+                      isLoading.value
+                          ? SizedBox(
+                            height: 20.sp,
+                            width: 20.sp,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: Colors.white,
+                            ),
+                          )
+                          : Text(
+                            'Continue',
+                            style: context.textTheme.headlineSmall!.copyWith(
+                              fontFamily: 'CircularStd',
+                            ),
+                          ),
                 ),
                 SizedBox(height: 20.h),
                 TextButton(

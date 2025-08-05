@@ -97,7 +97,7 @@ class SignUpScreen extends HookWidget {
 
         if (response.statusCode == 201 || response.statusCode == 200) {
           
-          context.pushNamed(AboutYouScreen.id);
+          context.pushNamed(AboutYouScreen.id, extra: email);
         } else {
           log(response.body);
           final errorData = jsonDecode(response.body);
@@ -230,7 +230,7 @@ class SignUpScreen extends HookWidget {
                   height: 55.h,
                   width: double.infinity,
                   borderRadius: 4.h,
-                  onTap: isLoading.value ? null : handleSignUp, // All logic moved here
+                  onTap: isLoading.value ? null : handleSignUp, 
                   child: isLoading.value
                       ? SizedBox(
                           height: 20.sp,
