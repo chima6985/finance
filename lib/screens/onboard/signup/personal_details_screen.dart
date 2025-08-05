@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:finance_app/screens/onboard/signup/signup.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +9,9 @@ import 'package:go_router/go_router.dart';
 import 'package:finance_app/components/components.dart';
 
 class AboutYouScreen extends HookWidget {
-  const AboutYouScreen({super.key});
+  const AboutYouScreen({super.key,required this.email});
+
+  final String email;
 
   static const String id = 'aboutYouScreen';
 
@@ -29,6 +33,8 @@ class AboutYouScreen extends HookWidget {
         dobController.text = '${picked.day}/${picked.month}/${picked.year}';
       }
     }
+
+    log(email);
 
     return Scaffold(
       backgroundColor: Color(0xFF0D0E12),
@@ -106,7 +112,7 @@ class AboutYouScreen extends HookWidget {
                   width: double.infinity,
                   borderRadius: 4.h,
                   onTap: () {
-                    context.pushNamed(ConfirmationCodeScreen.id);
+                    context.pushNamed(ConfirmationCodeScreen.id, extra: email);
                   },
                   child: Text(
                     'Continue',

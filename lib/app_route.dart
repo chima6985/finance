@@ -21,7 +21,8 @@ class NavObserver extends NavigatorObserver {
 }
 
 final router = GoRouter(
-  initialLocation: '/confirmationCodeScreen',
+  initialLocation: '/signUpScreen',
+  initialExtra: 'vitor@mail.com',
   observers: [NavObserver()],
 
   routes: [
@@ -42,12 +43,19 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/aboutYouScreen',
-      builder: (context, state) => const AboutYouScreen(),
+      builder: (context, state) {
+        final email = state.extra as String;
+        log('logged email $email');
+        return AboutYouScreen(email: email);
+      },
       name: AboutYouScreen.id,
     ),
     GoRoute(
       path: '/confirmationCodeScreen',
-      builder: (context, state) => const ConfirmationCodeScreen(),
+      builder: (context, state) {
+        final email = state.extra as String;
+        return ConfirmationCodeScreen (email: email);
+      },
       name: ConfirmationCodeScreen.id,
     ),
     GoRoute(

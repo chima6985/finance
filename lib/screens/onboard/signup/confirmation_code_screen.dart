@@ -1,25 +1,20 @@
 // ignore_for_file: use_build_context_synchronously
-
+import 'dart:convert';
 import 'package:finance_app/components/components.dart';
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:finance_app/screens/onboard/onboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 
 class ConfirmationCodeScreen extends StatelessWidget {
-  const ConfirmationCodeScreen({super.key});
+  const ConfirmationCodeScreen({super.key, required this.email});
+
+  final String email;
 
   static const String id = 'confirmationCodeScreen';
-  final response = await http.post(
-    Uri.parse('https://stg-msb-api.theseedfi.com/user/auth/verify-otp'),
-    headers: {'Content-Type': 'application/json'},
-          body: jsonEncode({
-            'email': email,
 
-          }),
-  )
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,9 +51,35 @@ class ConfirmationCodeScreen extends StatelessWidget {
               CustomPinField(
                 length: 6,
                 onComplete: (p0) async {
-                  await Future.delayed(Duration(seconds: 2), () {
-                    context.pushNamed(SelfieUploadScreen.id);
-                  });
+                  try {
+                    final response = await http.post(
+                      Uri.parse(
+                        'https://stg-msb-api.theseedfi.com/user/auth/verify-otp',
+                      ),
+                      headers: {'Content-Type': 'application/json'},
+                      body: jsonEncode({'email': email, 'otp': p0}),
+                    );
+
+                    if (response.statusCode == 200 ||
+                        response.statusCode == 201) {
+                      context.pushNamed(SelfieUploadScreen.id);
+                    } else {
+                      final error = jsonDecode(response.body);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            error['message'] ?? 'OTP verification failed',
+                          ),
+                        ),
+                      );
+                    }
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Network error. Please try again.'),
+                      ),
+                    );
+                  }
                 },
               ),
               Center(
