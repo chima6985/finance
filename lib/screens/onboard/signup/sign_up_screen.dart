@@ -89,7 +89,6 @@ class SignUpScreen extends HookWidget {
                     keyboardType: TextInputType.emailAddress,
                     onTap: () async {
                       final email = emailController.text.trim();
-                      final password = passwordController.text.trim();
                       final response = await http.post(
                         Uri.parse(
                           'https://stg-msb-api.theseedfi.com/user/auth/signup',
@@ -97,15 +96,8 @@ class SignUpScreen extends HookWidget {
                         headers: {'Content-Type': 'application/json'},
                         body: jsonEncode({
                           'email' : email,
-                          'password' : password,
                         })
                       );
-                      if (response.statusCode == 201 || response.statusCode ==200){
-                        context.pushNamed(AboutYouScreen.id);
-                      }
-                      else {
-                        print('Sign up failed: ${response.body}');
-                      }
                     },
                   ),
                 ),
@@ -120,9 +112,24 @@ class SignUpScreen extends HookWidget {
                     hintText: 'Enter password',
                     obscureText: obscureText.value,
                     suffixIcon: InkWell(
-                      onTap: () {
-                        obscureText.value = !obscureText.value;
-                      },
+                       onTap: () async {
+                      final password = passwordController.text.trim();
+                      final response = await http.post(
+                        Uri.parse(
+                          'https://stg-msb-api.theseedfi.com/user/auth/signup',
+                        ),
+                        headers: {'Content-Type': 'application/json'},
+                        body: jsonEncode({
+                          'password' : password,
+                        })
+                      );
+                      if (response.statusCode == 201 || response.statusCode == 200){
+                        context.pushNamed(AboutYouScreen.id);
+                      }
+                      else {
+                        print('Sign up failed: ${response.body}');
+                      }
+                    },
                       child: Icon(
                         obscureText.value
                             ? Icons.visibility_off
