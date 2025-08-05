@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -5,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:finance_app/screens/onboard/onboard.dart';
 import 'package:finance_app/components/components.dart';
+import 'package:http/http.dart' as http;
 
 class SignUpScreen extends HookWidget {
   const SignUpScreen({super.key});
@@ -15,7 +19,6 @@ class SignUpScreen extends HookWidget {
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
     final obscureText = useState(true);
-
     final hasUppercase = useState(false);
     final hasLowercase = useState(false);
     final hasNumber = useState(false);
@@ -84,6 +87,26 @@ class SignUpScreen extends HookWidget {
                     controller: emailController,
                     hintText: 'Enter email address',
                     keyboardType: TextInputType.emailAddress,
+                    onTap: () async {
+                      final email = emailController.text.trim();
+                      final password = passwordController.text.trim();
+                      final response = await http.post(
+                        Uri.parse(
+                          'https://stg-msb-api.theseedfi.com/user/auth/signup',
+                        ),
+                        headers: {'Content-Type': 'application/json'},
+                        body: jsonEncode({
+                          'email' : email,
+                          'password' : password,
+                        })
+                      );
+                      if (response.statusCode == 201 || response.statusCode ==200){
+                        context.pushNamed(AboutYouScreen.id);
+                      }
+                      else {
+                        print('Sign up failed: ${response.body}');
+                      }
+                    },
                   ),
                 ),
                 SizedBox(height: 24.h),
