@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:finance_app/components/components.dart';
 import 'package:finance_app/extension/context.extension.dart';
@@ -14,11 +15,14 @@ class IdUploadScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    File? image;
+    final image = useState<File?>(null);
     Future<void> _pickImageFromGallery() async {
       final picker = ImagePicker();
-      final pickedImage = await picker.pickImage(source: ImageSource.gallery);
-      print('$pickedImage this imaeg was picked');
+      final pickedfile = await picker.pickImage(source: ImageSource.gallery);
+      if (pickedfile != null) {
+        image.value = File(pickedfile.path);
+        log('$pickedfile this imaeg was picked');
+      }
     }
 
     return Scaffold(
@@ -40,7 +44,10 @@ class IdUploadScreen extends HookWidget {
                   CircleAvatar(
                     backgroundColor: Color(0XFF4D84FF),
                     radius: 80.sp,
-                    child: Image.file(File('assets/images/jpegs/id.png')),
+                    child:
+                        image.value == null
+                            ? Image.asset('assets/images/jpegs/id.png')
+                            : Image.file(image.value!),
                   ),
                   SizedBox(height: 24.h),
                   Text(
@@ -60,7 +67,7 @@ class IdUploadScreen extends HookWidget {
                       color: Color(0XFF8791A7),
                     ),
                   ),
-                  SizedBox(height: 78.h),
+                  SizedBox(height: 70.h),
                   TextButton.icon(
                     icon: Icon(
                       Icons.file_upload_outlined,
@@ -77,7 +84,7 @@ class IdUploadScreen extends HookWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 117.h),
+                  SizedBox(height: 95.h),
                   ReusableButton(
                     color: Color(0XFF4D84FF),
                     height: 55.h,
@@ -93,7 +100,7 @@ class IdUploadScreen extends HookWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 8.h),
                   TextButton(
                     onPressed: () {},
                     child: Text(
@@ -126,7 +133,14 @@ class IdUploadScreen extends HookWidget {
 
 
 
-
+// if (image.value != null) {
+//                         context.pushNamed(SetPinScreen.id);
+//                       } else {
+//                         // Optionally show a snackbar or alert
+//                         ScaffoldMessenger.of(context).showSnackBar(
+//                           SnackBar(content: Text('Please upload an ID first')),
+//                         );
+//                       }
 
 
 

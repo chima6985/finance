@@ -21,7 +21,7 @@ class MonoScreen extends StatelessWidget {
             children: [
               SizedBox(height: 100.h),
               Image.asset('assets/images/jpegs/mono.png'),
-              SizedBox(height: 32),
+              SizedBox(height: 3),
               Text(
                 textAlign: TextAlign.center,
                 'GetEquity uses Mono to\nlink your bank',
@@ -29,7 +29,7 @@ class MonoScreen extends StatelessWidget {
                   fontFamily: 'CircularStd',
                 ),
               ),
-              SizedBox(height: 40.h),
+              SizedBox(height: 35.h),
               _MonoTile(
                 iconPath: 'assets/images/jpegs/check.png',
                 title: 'Secure',
@@ -43,7 +43,7 @@ class MonoScreen extends StatelessWidget {
                 message:
                     'Transfer of all your information is encrypted\nend-to-end',
               ),
-              SizedBox(height: 90.h),
+              SizedBox(height: 105.h),
               ReusableButton(
                 color: Color(0XFF4D84FF),
                 height: 55.h,
@@ -59,7 +59,7 @@ class MonoScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20.h),
+              SizedBox(height: 12.h),
               TextButton(
                 onPressed: () {},
                 child: Text(

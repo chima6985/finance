@@ -1,17 +1,31 @@
+import 'dart:developer';
+import 'dart:io';
 import 'package:finance_app/components/components.dart';
 import 'package:finance_app/extension/context.extension.dart';
 import 'package:finance_app/screens/onboard/onboard.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 
-class SelfieUploadScreen extends StatelessWidget {
+class SelfieUploadScreen extends HookWidget {
   const SelfieUploadScreen({super.key});
 
   static const String id = 'selfieUploadScreen';
 
   @override
   Widget build(BuildContext context) {
+    final image = useState<File?>(null);
+    Future<void> _pickImageFromGallery() async {
+      final picker = ImagePicker();
+      final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+      if (pickedImage != null) {
+        image.value = File(pickedImage.path);
+        log('$pickedImage this imaeg was picked');
+      }
+    }
+
     return Scaffold(
       body: DecoratedContainerTwo(
         resize: false,
@@ -31,9 +45,12 @@ class SelfieUploadScreen extends StatelessWidget {
                   CircleAvatar(
                     backgroundColor: Color(0XFF4D84FF),
                     radius: 80.sp,
-                    child: Image.asset(
-                      'assets/images/jpegs/avatar_placeholder.png',
-                    ),
+                    child:
+                        image.value == null
+                            ? Image.asset(
+                              'assets/images/jpegs/avatar_placeholder.png',
+                            )
+                            : Image.file(image.value!),
                   ),
                   SizedBox(height: 24.h),
                   Text(
@@ -59,7 +76,9 @@ class SelfieUploadScreen extends StatelessWidget {
                       Icons.file_upload_outlined,
                       color: Color(0XFF4D84FF),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      _pickImageFromGallery();
+                    },
                     label: Text(
                       'Upload',
                       style: context.textTheme.bodyLarge!.copyWith(
